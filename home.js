@@ -11,7 +11,6 @@ $(document).ready(function(){
 	function decrease_button(magic_button, current_timeout) {
 		initial_width -= 5;
 		initial_height -= 1;
-		console.log(current_timeout)
 
 		if (initial_width <= 90 || initial_height <= 18) {
 			$(magic_button).remove();
