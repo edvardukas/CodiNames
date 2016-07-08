@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>CodiNames - It's like CodeNames but with an i!</title>
+    <link rel="stylesheet" type="text/css" href="home.css">
+
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script>
+        var config = {
+            apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
+            databaseURL: "https://codinames-b9676.firebaseio.com",
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="home.js"></script>
+</head>
+<body>
+    Hi! This is homepage for the CodiNames!
+    <p></p>
+    <button id="magic-button">Click me!</button>
+    <div id="games-for-current-user-div">
+        <!-- This should get filled from JavaScript. -->
+    </div>
+</body>
+</html>
