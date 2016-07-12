@@ -1,3 +1,103 @@
+@font-face{
+    src: url(f/Roboto-Regular.ttf);
+    font-family: def;
+}
+@font-face{
+    src: url(f/Roboto-Light.ttf);
+    font-family: light;
+}
+
+@font-face{
+    src: url(f/Roboto-Bold.ttf);
+    font-family: thick;
+}
 body {
-    background-color: lightblue;
+opacity: 1;
+text-align: center;
+margin-top: 70px;
+padding: 10px;
+}
+* {
+transition: all 0.3 ease;
+font-family: def;
+margin: 0px;
+box-sizing: border-box;
+border: 0px;
+outline: 0px;
+color: #FFF
+}
+header {
+position:fixed;
+left: 0px;
+right: 0px;
+height: 70px;
+top: 0px !important;
+background: rgba(0,0,0,0.5);
+line-height: 70px;
+font-family: thick;
+font-size: 32px;
+}
+#new {
+display: inline-block;
+    margin: 10px;
+    background: #48947f;
+    height: 50px;
+    width: calc(100% - 40px);
+    border-radius: 5px;
+    max-width: 980px;
+    line-height: 50px;
+}
+#setup {
+opacity: 0;
+}
+#usr{
+font-size: 18px;
+position: absolute;
+top: 0px;
+bottom: 0px;
+height: 30px;
+right: 30px;
+line-height: 30px;
+float:right;
+margin: auto;
+display: inline-block}
+
+#usr:before {
+font-size: 18px;
+content: "Welcome:";
+position: relative;
+left: -3px;
+display: inline-block;
+    font-family: light;
+}
+section{
+text-align: left;
+border: 10px solid #FFF;
+display: inline-block;
+width:500px;
+background:#99abbb;
+border-radius: 15px;
+max-width: calc(100% - 40px);
+}
+section > div {
+width: 100%;
+color: #333;
+    bottom: 0px;
+    background: rgba(255,255,255,0.3);
+    height: 50px;
+    line-height: 50px;
+    text-indent: 20px;
+}
+section > div:hover {
+    background: rgba(255,255,255,0.4)
+}
+#join {
+text-decoration: none;
+display: inline-block;
+color: white;
+text-align: center;
+height: 40px;
+width: 100%;
+line-height: 40px;
+background: #657484;
 }

@@ -2,9 +2,7 @@
 <head>
     <title>CodiNames - It's like CodeNames but with an i!</title>
     <link rel="stylesheet" type="text/css" href="home.css">
-
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
@@ -15,15 +13,15 @@
         };
         firebase.initializeApp(config);
     </script>
-
-    <script src="home.js"></script>
 </head>
 <body>
-    Hi! This is homepage for the CodiNames!
-    <p></p>
-    <button id="magic-button">Click me!</button>
-    <div id="games-for-current-user-div">
-        <!-- This should get filled from JavaScript. -->
-    </div>
+    <header>
+        CODINAMES
+        <div id="usr">
+        </div>
+    </header>
+    <script src="home.js"></script>
+<div id="new">New Game</div><br/>
+<div id="setup"></div>
 </body>
 </html>
