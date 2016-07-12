@@ -1,103 +1,153 @@
-@font-face{
+@font-face {
     src: url(f/Roboto-Regular.ttf);
     font-family: def;
 }
-@font-face{
+@font-face {
     src: url(f/Roboto-Light.ttf);
     font-family: light;
 }
-
-@font-face{
+@font-face {
     src: url(f/Roboto-Bold.ttf);
     font-family: thick;
 }
 body {
-opacity: 1;
-text-align: center;
-margin-top: 70px;
-padding: 10px;
+    opacity: 1;
+}
+#gamecontainer {
+    text-align: center;
+    margin-top: 70px;
+    padding: 10px;
+}
+#gamecontainer:after {
+    content: "";
+    background: #FFF url(arrow.svg) no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    height: 30px;
+    width: 100%;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 * {
-transition: all 0.3 ease;
-font-family: def;
-margin: 0px;
-box-sizing: border-box;
-border: 0px;
-outline: 0px;
-color: #FFF
+    font-family: def;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px;
+    outline: 0px;
+    color: #FFF
 }
 header {
-position:fixed;
-left: 0px;
-right: 0px;
-height: 70px;
-top: 0px !important;
-background: rgba(0,0,0,0.5);
-line-height: 70px;
-font-family: thick;
-font-size: 32px;
+    text-align: center;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    height: 70px;
+    top: 0px !important;
+    background: rgba(0, 0, 0, 0.5);
+    line-height: 70px;
+    font-family: thick;
+    font-size: 32px;
 }
 #new {
-display: inline-block;
+    display: inline-block;
     margin: 10px;
     background: #48947f;
     height: 50px;
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
     border-radius: 5px;
     max-width: 980px;
     line-height: 50px;
 }
-#setup {
-opacity: 0;
+#usr {
+    font-size: 18px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    height: 30px;
+    right: 30px;
+    line-height: 30px;
+    float: right;
+    margin: auto;
+    display: inline-block
 }
-#usr{
-font-size: 18px;
-position: absolute;
-top: 0px;
-bottom: 0px;
-height: 30px;
-right: 30px;
-line-height: 30px;
-float:right;
-margin: auto;
-display: inline-block}
-
 #usr:before {
-font-size: 18px;
-content: "Welcome:";
-position: relative;
-left: -3px;
-display: inline-block;
+    font-size: 18px;
+    content: "Welcome:";
+    position: relative;
+    left: -3px;
+    display: inline-block;
     font-family: light;
 }
-section{
-text-align: left;
-border: 10px solid #FFF;
-display: inline-block;
-width:500px;
-background:#99abbb;
-border-radius: 15px;
-max-width: calc(100% - 40px);
+section {
+    text-align: left;
+    border: 10px solid #FFF;
+    display: inline-block;
+    width: 500px;
+    background: #99abbb;
+    border-radius: 15px;
+    max-width: calc(100%);
 }
 section > div {
-width: 100%;
-color: #333;
+    transition-duration: 0.15s;
+    width: 100%;
+    color: #333;
     bottom: 0px;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     height: 50px;
     line-height: 50px;
     text-indent: 20px;
 }
 section > div:hover {
-    background: rgba(255,255,255,0.4)
+    background: rgba(255, 255, 255, 0.4)
 }
-#join {
-text-decoration: none;
-display: inline-block;
-color: white;
-text-align: center;
-height: 40px;
-width: 100%;
-line-height: 40px;
-background: #657484;
+.join {
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    background: #657484;
+}
+#setup {
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    z-index: 1;
+    background: #FFF url(close.svg) no-repeat;
+    background-position: top 10px right 10px;
+    max-width: 600px;
+    width: 80vw;
+    max-height: 50vh;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 60px auto;
+}
+#setup > * {
+    margin: 7px 0px;
+}
+#setup > input {
+    color: #000;
+    background: #EEE;
+    text-indent: 17px;
+    height: 50px;
+    width: 100%;
+}
+#cover {
+    background: rgba(100, 100, 100, 0.8);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 1;
+    z-index: 1;
+}
+#creategame {
+    background: #48947f;
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
 }
