@@ -44,26 +44,26 @@ function create(data) {
         }
     }
 }
-function blur(){
+function Blur(){
 
     $("#cover").css({
         "opacity": 1,
         "z-index": 2
     });
 };
-function unblur(){
+function unBlur(){
 
       $("#cover").css({
-          "opacity": 0,
-          setTimeout(function(){"z-index": 2},300)
+          "opacity": 0
       });
+      setTimeout(function(){$("#cover").css("z-index", 2)},300)
   };
 $("#new").click(function() {
     $("#setup").css({
         "opacity": 1,
         "z-index": 3
     });
-    blur()
+    Blur()
 })
 
 function closeSetup() {
