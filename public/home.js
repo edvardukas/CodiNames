@@ -17,30 +17,30 @@ firebase.database().ref("users/" + op.name + "/games").on('child_removed', funct
     $("#" + data.val().URI).remove();
 });
 
-function create(a) {
-    if (!$("#" + a.URI)[0]) /* checks if game is already in list */ {
+function create(data) {
+    if (!$("#" + data.URI)[0]) /* checks if game is already in list */ {
         var game = document.createElement("section");
         var team = document.createElement("div");
         var opponents = document.createElement("div");
         var gamecode = document.createElement("div");
         var join = document.createElement("a");
-        game.id = a.URI;
+        game.id = data.URI;
         team.className = "team";
         opponents.className = "opp";
         gamecode.className = "gamecode";
         join.className = "join ";
         join.innerHTML = "Join Game";
-        join.href = "play.html?g=" + a.URI;
-        $(team).html("Team: " + a.team.join(", "));
-        $(opponents).html("Opponents: " + a.opp.join(", "));
-        $(gamecode).html("Game Code: " + a.URI);
+        join.href = "play.html?g=" + data.URI;
+        $(team).html("Team: " + data.team.join(", "));
+        $(opponents).html("Opponents: " + data.opp.join(", "));
+        $(gamecode).html("Game Code: " + data.URI);
         $(game).append(team, opponents, gamecode, join);
         $("#gamecontainer").append(game);
     } else {
-        $("#" + a.URI + "> .team").html("Team: " + a.team.join(", "));
-        $("#" + a.URI + "> .opp").html("Opponents: " + a.opp.join(", "));
-        $("#" + a.URI + "> .gamecode").html("Game Code: " + a.URI);
-        $("#" + a.URI + "> .join")[0].href = "play.html?g=" + a.URI;
+        $("#" + data.URI + "> .team").html("Team: " + data.team.join(", "));
+        $("#" + data.URI + "> .opp").html("Opponents: " + data.opp.join(", "));
+        $("#" + data.URI + "> .gamecode").html("Game Code: " + data.URI);
+        $("#" + data.URI + "> .join")[0].href = "play.html?g=" + data.URI;
     }
 }
 $("#new").click(function() {
