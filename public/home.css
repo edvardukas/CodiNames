@@ -21,6 +21,7 @@
     color: #FFF
 }
 #gcc {
+    width: 100%;
     max-height: 100%;
     position: fixed;
     top: 70px;
@@ -89,6 +90,7 @@ header {
     font-family: light;
 }
 section {
+    overflow: hidden;
     text-align: left;
     border: 10px solid #FFF;
     display: inline-block;
@@ -138,7 +140,7 @@ section > div:hover {
 #setup > * {
     margin: 7px 0px;
 }
-#setup > input {
+#setup > input[type="text"] {
     color: #000;
     background: #EEE;
     text-indent: 17px;
