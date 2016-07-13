@@ -1,8 +1,14 @@
-// These rules give anyone, even people who are not users of your app,
-// read and write access to your database
 {
-  "rules": {
-    ".read": true,
-    ".write": true
+  "rules":{
+    "users": {
+      ".read" : true,
+      ".write" : true
+    },
+    "games": {
+      "$game_id": {
+        ".read": "auth != null && (!data.exists() || data.child('allowed_users').child(auth.uid).val() == 'owner')",
+        ".write": "auth != null && (!data.exists() || data.child('allowed_users').child(auth.uid).val() == 'owner')"
+      }
+    }
   }
 }
