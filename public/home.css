@@ -173,3 +173,12 @@ section > div:hover {
     width: 100%;
     font-size: 20px;
 }
+#rules{
+    z-index: 4;
+    position: fixed;
+    height: 500px;
+    top: -100%;
+    transition: top 0.3s ease;
+    background: blue;
+
+}

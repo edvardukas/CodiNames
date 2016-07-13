@@ -104,3 +104,9 @@ $("form").submit(function(event) {
     event.preventDefault();
     return false
 })
+
+
+$("#rulesButton").click(function(){
+    $("#rules").css("top", 0);
+    $("#cover").css("opacity", 0);
+});
