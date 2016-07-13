@@ -119,5 +119,4 @@ $("form").submit(function(event) {
 
 $("#rulesButton").click(function(){
     $("#rules").css("top", 0);
-    $("#cover").css("opacity", 0);
 });
