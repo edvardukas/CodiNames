@@ -7,21 +7,34 @@
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script>
-        var config = {
-            apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
-            databaseURL: "https://codinames-b9676.firebaseio.com",
-        };
-        firebase.initializeApp(config);
-    </script>
+         var config = {
+             apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
+             databaseURL: "https://codinames-b9676.firebaseio.com",
+         };
+         firebase.initializeApp(config);
+      </script>
 </head>
 <body>
-    <header>
-        CODINAMES
-        <div id="usr">
-        </div>
-    </header>
-    <script src="home.js"></script>
-<div id="new">New Game</div><br/>
-<div id="setup"></div>
+<header>
+    CODINAMES
+    <div id="usr">
+    </div>
+</header>
+<div id="cover"></div>
+<div id="gcc">
+    <div id="gamecontainer">
+        <div id="new">New Game</div>
+        <br/>
+    </div>
+</div>
+<div id="setup">
+    <div id="close"></div>
+    <h1 style="margin: 10px; margin-bottom: 30px; ;color: #000; text-align: center;">Game Creation</h1>
+    <input name="team" placeholder="Team-Mates"/>
+    <input name="opp" placeholder="Opponents"/>
+    <small style="color: #000; display: block;">All included members will be invited to your game.</small>
+    <button id="creategame">Create Game</button>
+</div>
+<script src="home.js"></script>
 </body>
 </html>
