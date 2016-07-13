@@ -173,6 +173,7 @@ section > div:hover {
     font-size: 20px;
 }
 #rules{
+    z-index: 4;
     position: fixed;
     height: 500px;
     top: -100%;

@@ -116,7 +116,14 @@ $("form").submit(function(event) {
     return false
 })
 
-
+var isVisible = false;
 $("#rulesButton").click(function(){
-    $("#rules").css("top", 0);
+    if (isVisible == false){
+        $("#rules").css("top", 0);
+        isVisible = true;
+    }
+    else{
+        $("#rules").css("top", "-100%")
+        isVisible = false;
+    }
 });
