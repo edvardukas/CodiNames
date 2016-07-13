@@ -67,6 +67,8 @@ $("#new").click(function() {
 })
 
 function closeSetup() {
+    $("#rules").css("top", "-100%");
+    isVisible = false;
     $("#setup, #cover").css({
         "opacity": 0,
     })
@@ -121,9 +123,10 @@ $("#rulesButton").click(function(){
     if (isVisible == false){
         $("#rules").css("top", 0);
         isVisible = true;
+        Blur();
     }
     else{
-        $("#rules").css("top", "-100%")
+        closeSetup();
         isVisible = false;
     }
 });
