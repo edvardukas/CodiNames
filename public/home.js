@@ -13,8 +13,7 @@ firebase.database().ref("users/" + op.name).on('value', function(data) {
 });
 
 firebase.database().ref("users/" + op.name + "/games").on('child_removed', function(data) {
-    console.log(test = data.val())
-    $("#" + data.val().game).remove();
+    $("#" + data.key).remove();
 });
 
 function create(data) {
