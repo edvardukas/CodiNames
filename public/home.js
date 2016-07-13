@@ -34,7 +34,7 @@ function create(data) {
             $(team).html("Team: " + data.games[gc].team.join(", "));
             $(opponents).html("Opponents: " + data.games[gc].opp.join(", "));
             $(gamecode).html("Game Code: " + gc);
-            $(game).append(team, opponents, gamecode, join);
+            $(game).append(team, opponents /* , gamecode */ , join);
             $("#gamecontainer").append(game);
         } else {
             $("#" + gc + "> .team").html("Team: " + data.games[gc].team.join(", "));
@@ -44,15 +44,26 @@ function create(data) {
         }
     }
 }
+function blur(){
+
+    $("#cover").css({
+        "opacity": 1,
+        "z-index": 2
+    });
+};
+function unblur(){
+
+      $("#cover").css({
+          "opacity": 0,
+          setTimeout(function(){"z-index": 2},300)
+      });
+  };
 $("#new").click(function() {
     $("#setup").css({
         "opacity": 1,
         "z-index": 3
     });
-    $("#cover").css({
-        "opacity": 1,
-        "z-index": 2
-    });
+    blur()
 })
 
 function closeSetup() {
@@ -95,7 +106,7 @@ function postData() {
         finished: false
     })
 }
-$("#close").click(function() {
+$("#close, #cover").click(function() {
     closeSetup()
 })
 $("form").submit(function(event) {
