@@ -44,8 +44,8 @@ function create(data) {
                     team.className = "team";
                     opponents.className = "opp";
                     gamecode.className = "gamecode";
-                    join.className = "join ";
-                    join.innerHTML = "Join Game";
+                    $(join).html("Join Game");
+                    $(join).addClass("join ");
                     join.href = "play.html?g=" + e;
                     $(gamecode).html("Game Code: " + e);
                     $(game).append(team, opponents, /* gamecode, */ join);
