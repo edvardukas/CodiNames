@@ -183,3 +183,17 @@ ol {
 h2 {
     margin-bottom: 30px;
 }
+#rulesbutton {
+    position: absolute;
+    left: 30px;
+    top: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin: auto 0px;
+    border-radius: 50%;
+    background: #000;
+    font-family: thick;
+    font-size: 18px;
+}
