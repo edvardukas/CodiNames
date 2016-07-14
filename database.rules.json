@@ -1,13 +1,13 @@
 {
-  "rules":{
+  "rules": {
     "users": {
-      ".read" : true,
-      ".write" : true
+      ".read": true,
+      ".write": true
     },
     "games": {
       "$game_id": {
-        ".read": "auth != null && (!data.exists() || data.child('allowed_users').child(auth.uid).val() == 'owner')",
-        ".write": "auth != null && (!data.exists() || data.child('allowed_users').child(auth.uid).val() == 'owner')"
+        ".read": "auth != null && (!data.exists() || data.child('players').child(auth.uid).child('perm').val() !== null)",
+        ".write": "auth != null && (!data.exists() || data.child('players').child(auth.uid).child('perm').val() === 'owner')"
       }
     }
   }

@@ -85,33 +85,32 @@ function closePop() {
 }
 
 function postData() {
-    firebase.database().ref('users/' + op.name + "/games").push({
-        opp: $("input[name='opp']").val().split(","),
-        team: $("input[name='team']").val().split(","),
-        board: {
-            11: {
-                covered: false,
-                role: "",
-                word: ""
-            },
-            12: {
-                covered: false,
-                role: "",
-                word: ""
-            },
-            21: {
-                covered: false,
-                role: "",
-                word: ""
-            },
-            22: {
-                covered: false,
-                role: "",
-                word: ""
-            }
-        },
-        finished: false
-    })
+    firebase.database().ref('games').push({
+                                                      "DOC": "DD/MM/YYYY",
+                                                      "board": {
+                                                          "a1": {
+                                                              "covered": false
+                                                          },
+                                                          "a2": {
+                                                              "covered": {
+                                                                  "role": "ROLE",
+                                                                  "word": "WORD"
+                                                              }
+                                                          },
+                                                          "b1": {
+                                                              "covered": false
+                                                          },
+                                                          "b2": {
+                                                              "covered": false
+                                                          }
+                                                      },
+                                                      "creator": "NAME OF GAME CREATOR",
+                                                      "isFinished": false,
+                                                      "players": {
+                                                          "blue": ["LIST OF PLAYERS", "ON THE BLUE TEAM"],
+                                                          "red": ["LIST OF PLAYERS ", "ON THE RED TEAM"]
+                                                      }
+                                                  })
 }
 $(".close, #cover").click(function() {
     closePop()
