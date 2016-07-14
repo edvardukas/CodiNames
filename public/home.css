@@ -11,7 +11,7 @@
     font-family: thick;
 }
 * {
-    transition-property: opacity;
+    transition-property: opacity, top;
     transition-duration: 0.3s;
     font-family: def;
     margin: 0px;
@@ -122,7 +122,9 @@ section > div:hover {
     line-height: 40px;
     background: #657484;
 }
-#setup {
+.pop {
+    color: #000;
+    top: 50px;
     text-align: center;
     padding: 20px;
     position: fixed;
@@ -130,23 +132,25 @@ section > div:hover {
     background: #FFF;
     max-width: 600px;
     width: 80vw;
-    top: 0px;
     left: 0px;
     right: 0px;
     margin: 60px auto;
     opacity: 0;
 }
-#setup > * {
+.pop * {
+    color: #000;
+}
+.pop > * {
     margin: 7px 0px;
 }
 #setup > input[type="text"] {
-    color: #000;
     background: #EEE;
     text-indent: 17px;
     height: 50px;
     width: 100%;
 }
-#close {
+.close {
+    display: inline-block;
     margin: 0px;
     position:absolute;
     background: url(close.svg) no-repeat;
@@ -171,13 +175,11 @@ section > div:hover {
     height: 60px;
     width: 100%;
     font-size: 20px;
+    color: #FFF;
 }
-#rules{
-    z-index: 4;
-    position: fixed;
-    height: 500px;
-    top: -100%;
-    transition: top 0.3s ease;
-    background: blue;
-
+ol {
+    text-align: left;
+}
+h2 {
+    margin-bottom: 30px;
 }

@@ -61,19 +61,20 @@ function unBlur(){
 $("#new").click(function() {
     $("#setup").css({
         "opacity": 1,
-        "z-index": 3
+        "z-index": 3,
+        "top": 0
     });
     Blur()
 })
 
-function closeSetup() {
-    $("#rules").css("top", "-100%");
+function closePop() {
+    $(".pop").css("top", "50px");
     isVisible = false;
-    $("#setup, #cover").css({
+    $(".pop, #cover").css({
         "opacity": 0,
     })
     setTimeout(function() {
-        $("#setup, #cover").css({
+        $(".pop, #cover").css({
             "z-index": -1,
         })
     }, 300)
@@ -108,11 +109,11 @@ function postData() {
         finished: false
     })
 }
-$("#close, #cover").click(function() {
-    closeSetup()
+$(".close, #cover").click(function() {
+    closePop()
 })
 $("form").submit(function(event) {
-    closeSetup();
+    closePop();
     postData();
     event.preventDefault();
     return false
@@ -121,12 +122,12 @@ $("form").submit(function(event) {
 var isVisible = false;
 $("#rulesButton").click(function(){
     if (isVisible == false){
-        $("#rules").css("top", 0);
+        $("#rules").css({"top":0,"opacity":1,"z-index":3});
         isVisible = true;
         Blur();
     }
     else{
-        closeSetup();
+        closePop();
         isVisible = false;
     }
 });
