@@ -3,19 +3,7 @@
 <head>
     <title>CodiNames - It's like CodeNames but with an i!</title>
     <link rel="stylesheet" type="text/css" href="home.css">
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
-    <script>
-        var config = {
-            apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
-            authDomain: "codinames-b9676.firebaseapp.com",
-            databaseURL: "https://codinames-b9676.firebaseio.com",
-            storageBucket: "codinames-b9676.appspot.com",
-        };
-        firebase.initializeApp(config);
-    </script>
+    <script data-main="resources/javascript/require-config" src="resources/javascript/jslibs/require-2.2.0.js"></script>
 </head>
 
 <body>
@@ -55,7 +43,11 @@
         <li>Hi</li>
     </ol>
 </div>
-<script src="home.js"></script>
+<script>
+    require(['require-config'], function(){
+        require(['home']);
+    });
+</script>
 </body>
 
 </html>
