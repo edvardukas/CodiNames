@@ -7,9 +7,17 @@ var op = {
 var test;
 
 firebase.database().ref("users/" + op.name).on('value', function(data) {
-    var username = data.val() ? data.val().Name : "guest";
-    $("#usr").html(cap(username));
-    create(data.val());
+    $("#usr").html(cap(data.val() ? data.val().Name : "guest"));
+    /* data.val().games.filter(function(e) {
+        firebase.database().ref("games/" + e).once('value', function(edata){
+        for ( name in edata.val().players) {
+            if (edata.val().players[name].team === edata.val().players[op.name].team ) {
+                console.log("GAME: "+e+" _ "+"TEAM-MATE: "+name)
+            }
+        }
+        })
+    }) */
+    create(data.val())
 });
 
 firebase.database().ref("users/" + op.name + "/games").on('child_removed', function(data) {
@@ -17,32 +25,61 @@ firebase.database().ref("users/" + op.name + "/games").on('child_removed', funct
 });
 
 function create(data) {
-    for (gc in data.games) {
-        if (!$("#" + gc)[0]) /* checks if game is already in list */ {
-            var game = document.createElement("section");
-            var team = document.createElement("div");
-            var opponents = document.createElement("div");
-            var gamecode = document.createElement("div");
-            var join = document.createElement("a");
-            game.id = gc;
-            team.className = "team";
-            opponents.className = "opp";
-            gamecode.className = "gamecode";
-            join.className = "join ";
-            join.innerHTML = "Join Game";
-            join.href = "play.html?g=" + gc;
-            $(team).html("Team: " + data.games[gc].team.join(", "));
-            $(opponents).html("Opponents: " + data.games[gc].opp.join(", "));
-            $(gamecode).html("Game Code: " + gc);
-            $(game).append(team, opponents /* , gamecode */ , join);
-            $("#gamecontainer").append(game);
-        } else {
-            $("#" + gc + "> .team").html("Team: " + data.games[gc].team.join(", "));
-            $("#" + gc + "> .opp").html("Team: " + data.games[gc].opp.join(", "));
-            $("#" + gc + "> .gamecode").html("Game Code: " + gc);
-            $("#" + gc + "> .join")[0].href = "play.html?g=" + gc;
-        }
-    }
+    data.games.filter(function(e) {
+        console.log(e);
+        firebase.database().ref("games/" + e).once('value', function(edata) {
+                if (!$("#" + e)[0]) {
+                    var game = document.createElement("section"),
+                        team = document.createElement("div"),
+                        opponents = document.createElement("div"),
+                        gamecode = document.createElement("div"),
+                        join = document.createElement("a");
+                    $(team).html("Team: ");
+                    $(opponents).html("Opponents: ");
+                    for ( name in edata.val().players) {
+                                if (edata.val().players[name].team === edata.val().players[op.name].team ) $(team).append(", "+name);
+                                else $(opponents).append(", "+name);
+                            }
+                    game.id = e;
+                    team.className = "team";
+                    opponents.className = "opp";
+                    gamecode.className = "gamecode";
+                    join.className = "join ";
+                    join.innerHTML = "Join Game";
+                    join.href = "play.html?g=" + e;
+                    $(gamecode).html("Game Code: " + e);
+                    $(game).append(team, opponents, gamecode, join);
+                    $("#gamecontainer").append(game);
+
+                }
+
+            })
+            /*
+               if (!$("#" + gc)[0]) /* checks if game is already in list  {
+                   var game = document.createElement("section");
+                   var team = document.createElement("div");
+                   var opponents = document.createElement("div");
+                   var gamecode = document.createElement("div");
+                   var join = document.createElement("a");
+                   game.id = gc;
+                   team.className = "team";
+                   gamecode.className = "gamecode";
+                   join.className = "join ";
+                   join.innerHTML = "Join Game";
+                   join.href = "play.html?g=" + gc;
+                   $(team).html("Team: " + data.games[gc].team.join(", "));
+                   $(opponents).html("Opponents: " + data.games[gc].opp.join(", "));
+                   $(gamecode).html("Game Code: " + gc);
+                   $(game).append(team, opponents /* , gamecode  , join);
+                   $("#gamecontainer").append(game);
+               } else {
+                   $("#" + gc + "> .team").html("Team: " + data.games[gc].team.join(", "));
+                   $("#" + gc + "> .opp").html("Team: " + data.games[gc].opp.join(", "));
+                   $("#" + gc + "> .gamecode").html("Game Code: " + gc);
+                   $("#" + gc + "> .join")[0].href = "play.html?g=" + gc;
+               }
+            */
+    })
 }
 
 function Blur() {
@@ -86,31 +123,31 @@ function closePop() {
 
 function postData() {
     firebase.database().ref('games').push({
-                                                      "DOC": "DD/MM/YYYY",
-                                                      "board": {
-                                                          "a1": {
-                                                              "covered": false
-                                                          },
-                                                          "a2": {
-                                                              "covered": {
-                                                                  "role": "ROLE",
-                                                                  "word": "WORD"
-                                                              }
-                                                          },
-                                                          "b1": {
-                                                              "covered": false
-                                                          },
-                                                          "b2": {
-                                                              "covered": false
-                                                          }
-                                                      },
-                                                      "creator": "NAME OF GAME CREATOR",
-                                                      "isFinished": false,
-                                                      "players": {
-                                                          "blue": ["LIST OF PLAYERS", "ON THE BLUE TEAM"],
-                                                          "red": ["LIST OF PLAYERS ", "ON THE RED TEAM"]
-                                                      }
-                                                  })
+        "DOC": "DD/MM/YYYY",
+        "board": {
+            "a1": {
+                "covered": false
+            },
+            "a2": {
+                "covered": {
+                    "role": "ROLE",
+                    "word": "WORD"
+                }
+            },
+            "b1": {
+                "covered": false
+            },
+            "b2": {
+                "covered": false
+            }
+        },
+        "creator": "NAME OF GAME CREATOR",
+        "isFinished": false,
+        "players": {
+            "blue": ["LIST OF PLAYERS", "ON THE BLUE TEAM"],
+            "red": ["LIST OF PLAYERS ", "ON THE RED TEAM"]
+        }
+    })
 }
 $(".close, #cover").click(function() {
     closePop()
