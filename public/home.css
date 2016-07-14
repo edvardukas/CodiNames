@@ -156,7 +156,9 @@ section > div:hover {
     height: 50px;
     width: 100%;
 }
-
+#setup {
+    line-height: 30px;
+}
 .close {
     display: inline-block;
     margin: 0px;
