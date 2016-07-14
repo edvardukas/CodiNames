@@ -12,10 +12,11 @@ firebase.database().ref("users/" + op.name).on('value', function(data) {
 });
 
 function showGameData () {
-    firebase.database().ref('games/'+fetchID()+).once("value",
-        function(data){
-            var DOC = data.val().DOC;
-            var boardState = {
+    firebase.database().ref('games/'+fetchID()).once("value", function(data)
+        {
+            var DOC = data.val().DOC; //Date of Creation
+
+            var boardState = { //creates the game board object
                 a: {
                     1: {
                         covered: false,
@@ -33,7 +34,7 @@ function showGameData () {
                         covered: false,
                         role: null,
                         word: null
-                    }
+                    },
                     2: {
                         covered: false,
                         role: null,
@@ -42,8 +43,17 @@ function showGameData () {
                 }
             }
 
-            var redTeam = data.val().players
-            var blueTeam =
+            var redTeam = [];
+            var blueTeam = [];
+            for (name in data.val().players){ //Loops through the database to find members of the red team
+                if (data.val().players[name].team == "red"){
+                    redTeam.push(name); //Pushes memebers into an array
+                }
+                else{
+                    blueTeam.push(name);
+                }
+            }
+
             console.log(boardState,DOC,redTeam,blueTeam);
         }
     )
@@ -52,3 +62,6 @@ function showGameData () {
 function fetchID(){
     return window.location.href.substr(window.location.href.indexOf("?g=")+3);
 }
+
+
+$(document).ready(showGameData())
