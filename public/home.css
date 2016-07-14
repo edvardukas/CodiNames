@@ -122,6 +122,9 @@ section > div:hover {
     line-height: 40px;
     background: rgba(0,0,0,0.3);
 }
+.join:hover {
+    background: #525e6b
+}
 .pop {
     color: #000;
     top: 50px;
@@ -178,6 +181,11 @@ section > div:hover {
     font-size: 20px;
     color: #FFF;
 }
+
+#creategame:hover, #new:hover {
+    background: #3d7e6c;
+}
+
 ol {
     text-align: left;
 }

@@ -19,7 +19,32 @@ function create(data) {
     var finishedGames = [];
     data.games.filter(function(e, b) {
         firebase.database().ref("games/" + e).once('value', function(edata) {
+<<<<<<< HEAD
             if (!$("#" + e)[0]) {
+=======
+                if (!$("#" + e)[0]) {
+                    var game = document.createElement("section"),
+                        team = document.createElement("div"),
+                        opponents = document.createElement("div"),
+                        gamecode = document.createElement("div"),
+                        join = document.createElement("a");
+                    $(team).html("Team: ");
+                    $(opponents).html("Opponents: ");
+                    for (name in edata.val().players) {
+                        if (edata.val().players[name].team === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
+                        else $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
+                    }
+                    game.id = e;
+                    team.className = "team";
+                    opponents.className = "opp";
+                    gamecode.className = "gamecode";
+                    $(join).html("Join Game");
+                    $(join).addClass("join ");
+                    join.href = "play.html?g=" + e;
+                    $(gamecode).html("Game Code: " + e);
+                    $(game).append(team, opponents, /* gamecode, */ join);
+                    $("#gamecontainer").append(game);
+>>>>>>> 1c81c0f0e1556eee9ac3be2ac08ba45dc30dece8
 
                 var game = document.createElement("section"),
                     team = document.createElement("div"),
