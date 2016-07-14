@@ -26,7 +26,6 @@ firebase.database().ref("users/" + op.name + "/games").on('child_removed', funct
 
 function create(data) {
     data.games.filter(function(e) {
-        console.log(e);
         firebase.database().ref("games/" + e).once('value', function(edata) {
                 if (!$("#" + e)[0]) {
                     var game = document.createElement("section"),
@@ -49,7 +48,6 @@ function create(data) {
                     join.href = "play.html?g=" + e;
                     $(gamecode).html("Game Code: " + e);
                     if (edata.val().isFinished) $(game).addClass("finished");
-                    console.log(game)
                     $(game).append(team, opponents, /* gamecode, */ join);
                     $("#gamecontainer").append(game);
 
