@@ -48,6 +48,8 @@ function create(data) {
                     join.innerHTML = "Join Game";
                     join.href = "play.html?g=" + e;
                     $(gamecode).html("Game Code: " + e);
+                    if (edata.val().isFinished) $(game).addClass("finished");
+                    console.log(game)
                     $(game).append(team, opponents, /* gamecode, */ join);
                     $("#gamecontainer").append(game);
 

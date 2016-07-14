@@ -120,7 +120,7 @@ section > div:hover {
     height: 40px;
     width: 100%;
     line-height: 40px;
-    background: #657484;
+    background: rgba(0,0,0,0.1);
 }
 .pop {
     color: #000;
@@ -197,4 +197,10 @@ h2 {
     background: #000;
     font-family: thick;
     font-size: 18px;
+}
+.finished {
+    background: #eac6c6
+}
+.finished {
+    background: #eac6c6
 }
