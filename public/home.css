@@ -35,9 +35,9 @@
     right: 0px;
     margin: 0px auto;
     overflow-y: auto;
+    transition-property: height;
 }
-#gamecontainer:after {
-    content: "";
+#hs {
     background: #FFF url(arrow.svg) no-repeat center;
     background-size: contain;
     display: inline-block;
