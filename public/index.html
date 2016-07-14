@@ -30,16 +30,21 @@
         <div id="new">New Game</div>
         <br/>
     </div>
-    <div id="hs"></div>
+    <div id="hs"><img id="slide" src="arrow.svg"/></div>
 </div>
-<form id="setup" class="pop">
+<div id="setup" class="pop">
     <div class="close"></div>
     <h2>Game Creation</h2>
-    <input name="team" type="text" placeholder="Team-Mates" />
-    <input name="opp" type="text" placeholder="Opponents" />
+    <small style="display: inline-block; margin-top: 10px; color: #000;">
+        Team colour:
+    </small>
+    <div id="sred" style="background: #1bbcd8"></div>
+    <div id="sblue" style="background: #1bbcd8"></div>
+    <input name="blue" type="text" placeholder="Red Team" />
+    <input name="red" type="text" placeholder="Blue Team" />
     <small style="color: #000; display: block;">All included members will be invited to your game.</small>
     <input type="submit" id="creategame" value="Create Game">
-</form>
+</div>
 <div id="rules" class="pop">
     <div class="close"></div>
     <h2>How to play CodiNames</h2>

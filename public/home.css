@@ -11,8 +11,7 @@
     font-family: thick;
 }
 * {
-    transition-property: opacity, top;
-    transition-duration: 0.3s;
+    transition: all 0.3s ease;
     font-family: def;
     margin: 0px;
     box-sizing: border-box;
@@ -21,27 +20,33 @@
     color: #FFF
 }
 #gcc {
+    top: 70px;
+    text-align: center;
     width: 100%;
     max-height: 100%;
     position: fixed;
-    top: 70px;
-    background: #FFF;
-    transition: top 0.3s ease;
-    text-align: center;
 }
 #gamecontainer {
     padding: 10px;
+    overflow-y: auto;
+}
+#slide {
+    margin: auto;
     left: 0px;
     right: 0px;
-    margin: 0px auto;
-    overflow-y: auto;
-    transition-property: height;
+    top:0px; bottom:
+    0px;
+    position:absolute;
+    transform: rotate(0deg);
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
 }
 #hs {
-    background: #FFF url(arrow.svg) no-repeat center;
-    background-size: contain;
+    position: relative;
+    text-align: center;
     display: inline-block;
-    height: 30px;
+    height: 50px;
+    line-height: 50px;
     width: 100%;
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
@@ -147,7 +152,6 @@ section > div:hover {
     margin: 7px 0px;
 }
 #setup > input[type="text"] {
-    background: #EEE;
     text-indent: 17px;
     height: 50px;
     width: 100%;
@@ -209,6 +213,15 @@ h2 {
 .finished {
     background: #eac6c6
 }
-.finished {
-    background: #eac6c6
+[name="blue"] {
+    background: #e7f5ff;
+}
+[name="red"] {
+    background: #ffe7e7;
+}
+#sred, #sblue {
+    border-radius: 50%;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
 }

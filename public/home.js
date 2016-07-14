@@ -19,9 +19,9 @@ function create(data) {
     var finishedGames = [];
     data.games.filter(function(e, b) {
         firebase.database().ref("games/" + e).once('value', function(edata) {
-        
+
             if (!$("#" + e)[0]) {
-            var game = document.createElement("section"),
+                var game = document.createElement("section"),
                     team = document.createElement("div"),
                     opponents = document.createElement("div"),
                     gamecode = document.createElement("div"),
@@ -48,11 +48,12 @@ function create(data) {
 
                 } else $("#gamecontainer").append(game);
 
-            }if (b >= data.games.length - 1) {
-                         finishedGames.filter(function(z) {
-                             $("#gamecontainer").append(z)
-                         })
-                     }
+            }
+            if (b >= data.games.length - 1) {
+                finishedGames.filter(function(z) {
+                    $("#gamecontainer").append(z)
+                })
+            }
 
         })
 
@@ -124,37 +125,50 @@ function closePop() {
 }
 
 function postData() {
-    firebase.database().ref('games').push({
-        "DOC": "DD/MM/YYYY",
-        "board": {
-            "a1": {
-                "covered": false
-            },
-            "a2": {
-                "covered": {
-                    "role": "ROLE",
-                    "word": "WORD"
+    firebase.database().ref("users/"+op.name+"/games").once("value", function(edata) {
+    var data = edata.val();
+            var key = firebase.database().ref('games').push({
+                "DOC": new Date(),
+                "board": {
+                    "a1": {
+                        "covered": false,
+                        "role": "ROLE",
+                        "word": "WORD"
+                    },
+                    "a2": {
+                        "covered": false,
+                        "role": "ROLE",
+                        "word": "WORD"
+                    },
+                    "b1": {
+                        "covered": false,
+                        "role": "ROLE",
+                        "word": "WORD"
+                    },
+                    "b2": {
+                        "covered": false,
+                        "role": "ROLE",
+                        "word": "WORD"
+                    }
+                },
+                "creator": op.name,
+                "isFinished": false,
+                "players": {
+                    "blue": $("[name=blue]").val().split(","),
+                    "red": $("[name=red]").val().split(",")
                 }
-            },
-            "b1": {
-                "covered": false
-            },
-            "b2": {
-                "covered": false
-            }
-        },
-        "creator": "NAME OF GAME CREATOR",
-        "isFinished": false,
-        "players": {
-            "blue": ["LIST OF PLAYERS", "ON THE BLUE TEAM"],
-            "red": ["LIST OF PLAYERS ", "ON THE RED TEAM"]
-        }
+            }).key;
+            data.push(key);
+            console.log(data);
+            firebase.database().ref("users/"+op.name+"/games").set(data)
+
     })
 }
 $(".close, #cover").click(function() {
     closePop()
 })
-$("form").submit(function(event) {
+$("#creategame").click(function(event) {
+    $("[name=red],[name=blue]").val("");
     closePop();
     postData();
     event.preventDefault();
@@ -176,6 +190,12 @@ $("#rulesButton").click(function() {
         isVisible = false;
     }
 });
-$("#hs").click(function(){
-    $("#gamecontainer").css("height",0)
+$("#hs").click(function() {
+    if ($("#slide").css("transform") === "matrix(1, 0, 0, 1, 0, 0)") {
+        $("#gcc").css("top", -($("#gcc").height() - 120));
+        $("#slide").css("transform", "rotate(180deg)")
+    } else {
+        $("#gcc").css("top", 70);
+        $("#slide").css("transform", "rotate(0deg)")
+    }
 })
