@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>CodiNames - It's like CodeNames but with an i!</title>
     <link rel="stylesheet" type="text/css" href="home.css">
@@ -7,15 +8,16 @@
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script>
-         var config = {
-             apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
-             authDomain: "codinames-b9676.firebaseapp.com",
-             databaseURL: "https://codinames-b9676.firebaseio.com",
-             storageBucket: "codinames-b9676.appspot.com",
-         };
-         firebase.initializeApp(config);
-      </script>
+        var config = {
+            apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
+            authDomain: "codinames-b9676.firebaseapp.com",
+            databaseURL: "https://codinames-b9676.firebaseio.com",
+            storageBucket: "codinames-b9676.appspot.com",
+        };
+        firebase.initializeApp(config);
+    </script>
 </head>
+
 <body>
 <header>
     <button type="button" id="rulesButton">?</button> CODINAMES
@@ -32,14 +34,14 @@
 <form id="setup" class="pop">
     <div class="close"></div>
     <h2>Game Creation</h2>
-    <input name="team" type="text" placeholder="Team-Mates"/>
-    <input name="opp" type="text" placeholder="Opponents"/>
+    <input name="team" type="text" placeholder="Team-Mates" />
+    <input name="opp" type="text" placeholder="Opponents" />
     <small style="color: #000; display: block;">All included members will be invited to your game.</small>
     <input type="submit" id="creategame" value="Create Game">
 </form>
 <div id="rules" class="pop">
     <div class="close"></div>
-    <h2>Placeholder Rules here</h2>
+    <h2>How to play CodiNames</h2>
     <ol>
         <li>Players are </li>
         <li>Hi</li>
@@ -49,4 +51,5 @@
 </div>
 <script src="home.js"></script>
 </body>
+
 </html>

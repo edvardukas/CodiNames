@@ -44,20 +44,24 @@ function create(data) {
         }
     }
 }
-function Blur(){
+
+function Blur() {
 
     $("#cover").css({
         "opacity": 1,
         "z-index": 2
     });
 };
-function unBlur(){
 
-      $("#cover").css({
-          "opacity": 0
-      });
-      setTimeout(function(){$("#cover").css("z-index", 2)},300)
-  };
+function unBlur() {
+
+    $("#cover").css({
+        "opacity": 0
+    });
+    setTimeout(function() {
+        $("#cover").css("z-index", 2)
+    }, 300)
+};
 $("#new").click(function() {
     $("#setup").css({
         "opacity": 1,
@@ -120,13 +124,16 @@ $("form").submit(function(event) {
 })
 
 var isVisible = false;
-$("#rulesButton").click(function(){
-    if (isVisible == false){
-        $("#rules").css({"top":0,"opacity":1,"z-index":3});
+$("#rulesButton").click(function() {
+    if (isVisible == false) {
+        $("#rules").css({
+            "top": 0,
+            "opacity": 1,
+            "z-index": 3
+        });
         isVisible = true;
         Blur();
-    }
-    else{
+    } else {
         closePop();
         isVisible = false;
     }

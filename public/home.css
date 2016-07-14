@@ -152,7 +152,7 @@ section > div:hover {
 .close {
     display: inline-block;
     margin: 0px;
-    position:absolute;
+    position: absolute;
     background: url(close.svg) no-repeat;
     background-position: center;
     top: 10px;
