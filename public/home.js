@@ -36,10 +36,10 @@ function create(data) {
                         join = document.createElement("a");
                     $(team).html("Team: ");
                     $(opponents).html("Opponents: ");
-                    for ( name in edata.val().players) {
-                                if (edata.val().players[name].team === edata.val().players[op.name].team ) $(team).append(", "+name);
-                                else $(opponents).append(", "+name);
-                            }
+                    for (name in edata.val().players) {
+                        if (edata.val().players[name].team === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
+                        else $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
+                    }
                     game.id = e;
                     team.className = "team";
                     opponents.className = "opp";
@@ -48,7 +48,7 @@ function create(data) {
                     join.innerHTML = "Join Game";
                     join.href = "play.html?g=" + e;
                     $(gamecode).html("Game Code: " + e);
-                    $(game).append(team, opponents, gamecode, join);
+                    $(game).append(team, opponents, /* gamecode, */ join);
                     $("#gamecontainer").append(game);
 
                 }
