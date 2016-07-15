@@ -61,10 +61,11 @@ function create(data) {
 
                 } else $("#gamecontainer").append(game);
 
-            }  /* else {
-                             $("#" + e + "> .team").html("Team: " + edata.games[gc].team.join(", "));
-                             $("#" + e + "> .opp").html("Team: " + edata.games[gc].opp.join(", "));
-                         } */
+            }
+            /* else {
+                                       $("#" + e + "> .team").html("Team: " + edata.games[gc].team.join(", "));
+                                       $("#" + e + "> .opp").html("Team: " + edata.games[gc].opp.join(", "));
+                                   } */
             if (b >= data.games.length - 1) {
                 finishedGames.filter(function(z) {
                     $("#gamecontainer").append(z)
@@ -156,28 +157,7 @@ function postData() {
     })
     key = firebase.database().ref('games').push({
         "DOC": new Date(),
-        "board": {
-            "a1": {
-                "covered": false,
-                "role": "ROLE",
-                "word": "WORD"
-            },
-            "a2": {
-                "covered": false,
-                "role": "ROLE",
-                "word": "WORD"
-            },
-            "b1": {
-                "covered": false,
-                "role": "ROLE",
-                "word": "WORD"
-            },
-            "b2": {
-                "covered": false,
-                "role": "ROLE",
-                "word": "WORD"
-            }
-        },
+        "board": "u"
         "creator": op.name,
         "isFinished": false,
         "players": players
