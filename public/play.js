@@ -1,127 +1,67 @@
-function cap(string) {
+
+var redTeam = [];
+var blueTeam = [];
+firebase.database().ref('games/'+fetchID()).once("value", function(data)
+    {
+        var boardState = data.val().board;
+            for (name in data.val().players){ //Loops through the database to find members of the red team
+                if (data.val().players[name].team == "red"){
+                    redTeam.push(name); //Pushes memebers intoan array
+                }
+                else if (data.val().players[name].team == "blue"){
+                    blueTeam.push(name);
+                }
+            }console.log(redTeam,blueTeam);
+            fill();
+    }
+)
+    function cap(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 var op = {
     name: "testUser"
 }
-var test;
 
 firebase.database().ref("users/" + op.name).on('value', function(data) {
     var username = data.val() ? data.val().Name : "guest";
     $("#usr").html(cap(username));
 });
 
-function showGameData () {
-    firebase.database().ref('games/'+fetchID()).once("value", function(data)
-        {
-            //var DOC = data.val().DOC; Date of Creation
-
-            var boardState = { //creates the game board object
-                a: {
-                    1: {
-                        covered: false,
-                        role: null,
-                        word: null
-                    },
-                    2: {
-                        covered: false,
-                        role: null,
-                        word: null
-                    }
-                },
-                b: {
-                    1: {
-                        covered: false,
-                        role: null,
-                        word: null
-                    },
-                    2: {
-                        covered: false,
-                        role: null,
-                        word: null
-                    }
-                }
-            }
-
-            var boardState = data.val().board;
-
-            var redTeam = [];
-            var blueTeam = [];
-            for (name in data.val().players){ //Loops through the database to find members of the red team
-                if (data.val().players[name].team == "red"){
-                    redTeam.push(name); //Pushes memebers into an array
-                }
-                else{
-                    blueTeam.push(name);
-
-                }
-            }
-                for (var i = 0; i < redTeam.length; i++){
-                    console.log(i);
-                    $("#redTeam").append("<span>"+redTeam[i]+"</span>");
-                }
-                for (var i = 0; i < blueTeam.length; i++){
-                    console.log(i);
-                    $("#blueTeam").append("<span>"+blueTeam[i]+"</span><br>");
-                }
-
-            console.log(boardState,redTeam,blueTeam);
-            constructBoard(boardState, redTeam, blueTeam);
-        }
-    )
-}
-
-function constructBoard(state, redTeam, blueTeam){
-
-    console.log(state);
-
-    $("#a1 .covered").html("covered? "+state.a1.covered+"<br>");
-    $("#a2 .covered").html("covered? "+state.a2.covered+"<br>");
-    $("#b1 .covered").html("covered? "+state.b1.covered+"<br>");
-    $("#b2 .covered").html("covered? "+state.b2.covered+"<br>");
-
-    $("#a1 .role").html("role? "+state.a1.role+"<br>");
-    $("#a2 .role").html("role? "+state.a1.role+"<br>");
-    $("#b1 .role").html("role? "+state.b1.role+"<br>");
-    $("#b2 .role").html("role? "+state.b2.role+"<br>");
-
-    $("#a1 .word").html("Word? "+state.a1.word+"<br>");
-    $("#a2 .word").html("Word? "+state.a2.word+"<br>");
-    $("#b1 .word").html("Word? "+state.b1.word+"<br>");
-    $("#b2 .word").html("Word? "+state.b2.word+"<br>");
-}
-
-    $(".word").click(function(){
+$(".word").click(function(){
     firebase.database().ref("games/"+fetchID()+"/board/"+[this.parentElement.id]).update({
         covered: true
     })
-
-    console.log([this.id]+"changed");
-    $()
-
 });
 
 firebase.database().ref("games/"+fetchID()+"/board").on("value",function(data){
-    $("#a1 .covered").html("covered? "+data.val().a1.covered+"<br>");
-    $("#a2 .covered").html("covered? "+data.val().a2.covered+"<br>");
-    $("#b1 .covered").html("covered? "+data.val().b1.covered+"<br>");
-    $("#b2 .covered").html("covered? "+data.val().b2.covered+"<br>");
-
-    $("#a1 .role").html("role? "+data.val().a1.role+"<br>");
-    $("#a2 .role").html("role? "+data.val().a1.role+"<br>");
-    $("#b1 .role").html("role? "+data.val().b1.role+"<br>");
-    $("#b2 .role").html("role? "+data.val().b2.role+"<br>");
-
-    $("#a1 .word").html("Word? "+data.val().a1.word+"<br>");
-    $("#a2 .word").html("Word? "+data.val().a2.word+"<br>");
-    $("#b1 .word").html("Word? "+data.val().b1.word+"<br>");
-    $("#b2 .word").html("Word? "+data.val().b2.word+"<br>");
+ console.log(redTeam,blueTeam);
+    fill(data);
 })
+
+function fill(data){
+    for (var i = 0; i < redTeam.length; i++){
+        console.log(i,redTeam,blueTeam);
+        $("#redTeam").append("<span>"+redTeam[i]+"</span>");
+    }
+    for (var i = 0; i < blueTeam.length; i++){
+        console.log(i);
+        $("#blueTeam").append("<span>"+blueTeam[i]+"</span><br>");
+    }
+
+    $(".square").filter(function(square,i){
+        console.log(square,i.id);
+        $("#"+i.id+" > .word").html("word? "+data.val()[i.id].word+"<br>")
+    })
+
+    $(".square").filter(function(square,i){
+       $("#"+i.id+" > .covered").html("covered? "+data.val()[i.id].covered+"<br>")
+    })
+
+    $(".square").filter(function(square,i){
+       $("#"+i.id+" > .role").html("role? "+data.val()[i.id].role+"<br>")
+    })
+}
 
 function fetchID(){
     return window.location.href.substr(window.location.href.indexOf("?g=")+3);
 }
-
-
-
-$(document).ready(showGameData())

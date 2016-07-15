@@ -12,7 +12,7 @@
 }
 * {
     transition-property: opacity;
-    transition-duration: 0.3s;
+    transition: all 0.3s ease;
     font-family: def;
     margin: 0px;
     box-sizing: border-box;
@@ -50,7 +50,7 @@ header {
     border-top: 500px;
     position: absolute;
     display: block;
-    background: green;
+    background: 255, 255, 255, 0.4;
     top: 25%;
     left: 0px;
     right: 0px;
@@ -59,16 +59,23 @@ header {
     height: 620px;
     padding: 10px;
 }
+#board:hover{
+    background: 255, 255, 255, 0.6;
+}
 
 .square {
-    width: 50%;
+    width: calc(50% - 20px);
     height: 50%;
     background: red;
     display: inline-block;
-    border: 10px solid green;
+    margin: 10px;
     box-sizing: border-box;
     float: left;
     text-align: center;
+}
+
+.square {
+    border-color: 40, 40, 40, 0.4;
 }
 
 .square:hover {
@@ -76,14 +83,19 @@ header {
 }
 
 #redTeam{
-    background: red;
+    background: #ffe7e7;
     float: left;
+}
+#redTeam :hover{
 
 }
 
 #blueTeam{
-    background: blue;
+    background: #e7f5ff;
     float: right;
+}
+#blueTeam :hover{
+
 }
 
 #redTeam, #blueTeam{
