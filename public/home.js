@@ -29,15 +29,23 @@ function create(data) {
                 $(team).html("Team: ");
                 $(opponents).html("Opponents: ");
                 for (name in edata.val().players) {
-                    if (edata.val().players[name].team === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
-                    else $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
+                    console.log(name);
+                    if (edata.val().players[op.name].team) {
+                        console.log("NOT IN TEAM");
+                       // if (edata.val().players[name].team === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
+                       // else $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
+                    } else {
+                        console.log("IN TEAM");
+                      //  if ("red" === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
+                      //  else if ("blue" === edata.val().players[op.name].team) $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
+                    }
                 }
                 game.id = e;
                 team.className = "team";
                 opponents.className = "opp";
                 gamecode.className = "gamecode";
                 join.className = "join ";
-                join.innerHTML = "Join Game";
+                $(join).html("Join Game");
                 join.href = "play.html?g=" + e;
                 $(gamecode).html("Game Code: " + e);
                 $(game).append(team, opponents, /* gamecode, */ join);
@@ -125,54 +133,65 @@ function closePop() {
 }
 
 function postData() {
-    firebase.database().ref("users/"+op.name+"/games").once("value", function(edata) {
-    var data = edata.val();
-            var key = firebase.database().ref('games').push({
-                "DOC": new Date(),
-                "board": {
-                    "a1": {
-                        "covered": false,
-                        "role": "ROLE",
-                        "word": "WORD"
-                    },
-                    "a2": {
-                        "covered": false,
-                        "role": "ROLE",
-                        "word": "WORD"
-                    },
-                    "b1": {
-                        "covered": false,
-                        "role": "ROLE",
-                        "word": "WORD"
-                    },
-                    "b2": {
-                        "covered": false,
-                        "role": "ROLE",
-                        "word": "WORD"
-                    }
-                },
-                "creator": op.name,
-                "isFinished": false,
-                "players": {
-                    "blue": $("[name=blue]").val().split(","),
-                    "red": $("[name=red]").val().split(",")
-                }
-            }).key;
-            data.push(key);
-            console.log(data);
-            firebase.database().ref("users/"+op.name+"/games").set(data)
-
+    var players = {},
+        games,
+        key;
+    $("[name=blue]").val().split(",").filter(function(each) {
+        players[each] = {
+            "team": "blue",
+            "perm": "play"
+        }
+    });
+    $("[name=red]").val().split(",").filter(function(each) {
+        players[each] = {
+            "team": "red",
+            "perm": "play"
+        }
+    });
+    firebase.database().ref("users/" + op.name + "/games").once("value", function(edata) {
+        games = edata.val();
     })
+    key = firebase.database().ref('games').push({
+                  "DOC": new Date(),
+                  "board": {
+                      "a1": {
+                          "covered": false,
+                          "role": "ROLE",
+                          "word": "WORD"
+                      },
+                      "a2": {
+                          "covered": false,
+                          "role": "ROLE",
+                          "word": "WORD"
+                      },
+                      "b1": {
+                          "covered": false,
+                          "role": "ROLE",
+                          "word": "WORD"
+                      },
+                      "b2": {
+                          "covered": false,
+                          "role": "ROLE",
+                          "word": "WORD"
+                      }
+                  },
+                  "creator": op.name,
+                  "isFinished": false,
+                  "players": players
+              }).key;
+    games.push(key);
+    console.log(games);
+    firebase.database().ref("users/" + op.name + "/games").set(games)
 }
 $(".close, #cover").click(function() {
     closePop()
 })
 $("#creategame").click(function(event) {
-    $("[name=red],[name=blue]").val("");
     closePop();
     postData();
     event.preventDefault();
-    return false
+    $("[name=red],[name=blue]").val("");
+    return false;
 })
 
 var isVisible = false;

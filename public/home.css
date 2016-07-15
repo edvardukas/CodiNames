@@ -224,6 +224,7 @@ h2 {
 #sred, #sblue {
     border-radius: 50%;
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    margin: 0px 3px;
+    width: 15px;
+    height: 15px;
 }
