@@ -218,8 +218,8 @@ define(['jquery', 'firebase'], function($, firebase){
 	});
 
 	$("#hs").click(function() {
-		if ($("#slide").css("transform") === "matrix(1, 0, 0, 1, 0, 0)") {
-			$("#gcc").css("top", -($("#gcc").height() - 120));
+		if (parseInt($("#gcc").css("top")) === 70) {
+			$("#gcc").css("top", -($("#gcc").height() - 50));
 			$("#slide").css("transform", "rotate(180deg)")
 		} else {
 			$("#gcc").css("top", 70);

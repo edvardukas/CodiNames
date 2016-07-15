@@ -2,16 +2,11 @@
 
 <head>
     <title>CodiNames - It's like CodeNames but with an i!</title>
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="resources/home.css">
     <script data-main="resources/javascript/require-config" src="resources/javascript/jslibs/require-2.2.0.js"></script>
 </head>
 
 <body>
-<header>
-    <button id="rulesButton">?</button> CODINAMES
-    <div id="usr">
-    </div>
-</header>
 <div id="cover"></div>
 <div id="gcc">
     <div id="gamecontainer">
@@ -46,6 +41,7 @@
 <script>
     require(['require-config'], function(){
         require(['home']);
+        require(['header']);
     });
 </script>
 </body>

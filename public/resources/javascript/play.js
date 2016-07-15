@@ -1,6 +1,7 @@
+define(['jquery', 'firebase'], function($, firebase){
 var redTeam = [];
 var blueTeam = [];
-<<<<<<< HEAD
+
 firebase.database().ref('games/'+fetchID()).once("value", function(data)
     {
         var boardState = data.val().board;
@@ -14,19 +15,6 @@ firebase.database().ref('games/'+fetchID()).once("value", function(data)
             }
             console.log(redTeam,blueTeam);
             fill();
-=======
-firebase.database().ref('games/' + fetchID()).once("value", function(data) {
-    var boardState = data.val().board;
-    for (name in data.val().players) { //Loops through the database to find members of the red team
-        if (data.val().players[name].team == "red") {
-            redTeam.push(name); //Pushes memebers intoan array
-        } else if (data.val().players[name].team == "blue") {
-            blueTeam.push(name);
-        }
->>>>>>> c3c4d626b72bee4a0601dd7d460cd5894dce9b2e
-    }
-    console.log(redTeam, blueTeam);
-    fill();
 })
 
 function cap(string) {
@@ -79,3 +67,4 @@ function fill(data) {
 function fetchID() {
     return window.location.href.substr(window.location.href.indexOf("?g=") + 3);
 }
+})

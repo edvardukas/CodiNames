@@ -1,0 +1,239 @@
+@font-face {
+    src: url(fonts/Roboto-Regular.ttf);
+    font-family: def;
+}
+@font-face {
+    src: url(fonts/Roboto-Light.ttf);
+    font-family: light;
+}
+@font-face {
+    src: url(fonts/Roboto-Bold.ttf);
+    font-family: thick;
+}
+html { background: #F7F8FA }
+* {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-family: def;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px;
+    outline: 0px;
+    color: #FFF
+}
+#gcc {
+    top: 70px;
+    text-align: center;
+    width: 100%;
+    max-height: 100%;
+    position: fixed;
+    bottom: 0px;
+}
+#gamecontainer {
+    position: relative;
+    max-height: calc(100% - 50px);
+    padding: 10px;
+    overflow-y: auto;
+}
+#slide {
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    position:absolute;
+    transform: rotate(0deg);
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    background: #FFF;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+}
+#hs {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    line-height: 50px;
+}
+header {
+    z-index: 1;
+    text-align: center;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    height: 70px;
+    top: 0px !important;
+    background: #444;
+    line-height: 70px;
+    font-family: thick;
+    font-size: 32px;
+}
+#new {
+    display: inline-block;
+    margin: 10px;
+    background: #48947f;
+    height: 50px;
+    width: calc(100% - 20px);
+    border-radius: 5px;
+    max-width: 980px;
+    line-height: 50px;
+}
+#usr {
+    font-size: 18px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    height: 30px;
+    right: 30px;
+    line-height: 30px;
+    float: right;
+    margin: auto;
+    display: inline-block
+}
+#usr:before {
+    font-size: 18px;
+    content: "Welcome:";
+    position: relative;
+    left: -3px;
+    width: 300px;
+    text-align: right;
+    display: inline-block;
+    font-family: light;
+}
+section {
+    overflow: hidden;
+    text-align: left;
+    margin: 10px;
+    display: inline-block;
+    width: 500px;
+    background: #99abbb;
+    border-radius: 3px;
+    max-width: calc(100% - 20px);
+}
+section > div {
+    transition-duration: 0.15s;
+    width: 100%;
+    color: #333;
+    bottom: 0px;
+    background: rgba(255, 255, 255, 0.3);
+    height: 50px;
+    line-height: 50px;
+    text-indent: 20px;
+}
+section > div:hover {
+    background: rgba(255, 255, 255, 0.4)
+}
+.join {
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    background: rgba(0,0,0,0.3);
+}
+.join:hover {
+    background: rgba(0,0,0,0.5);
+}
+.pop {
+    color: #000;
+    top: 50px;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    z-index: -3;
+    background: #FFF;
+    max-width: 600px;
+    width: 80vw;
+    left: 0px;
+    right: 0px;
+    margin: 60px auto;
+    opacity: 0;
+}
+.pop * {
+    color: #000;
+}
+.pop > * {
+    margin: 7px 0px;
+}
+#setup > input[type="text"] {
+    text-indent: 17px;
+    height: 50px;
+    width: 100%;
+}
+#setup {
+    line-height: 30px;
+}
+.close {
+    display: inline-block;
+    margin: 0px;
+    position: absolute;
+    background: url(close.svg) no-repeat;
+    background-position: center;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+}
+#cover {
+    background: rgba(100, 100, 100, 0.8);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0;
+    z-index: -2;
+}
+#creategame {
+    background: #48947f;
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    color: #FFF;
+}
+
+#creategame:hover, #new:hover {
+    background: #3d7e6c;
+}
+
+ol {
+    text-align: left;
+}
+h2 {
+    margin-bottom: 30px;
+}
+#rulesbutton {
+    position: absolute;
+    left: 30px;
+    top: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin: auto 0px;
+    border-radius: 50%;
+    background: #000;
+    font-family: thick;
+    font-size: 18px;
+}
+.finished {
+    background: #eac6c6
+}
+[name="blue"] {
+    background: #e7f5ff;
+}
+[name="red"] {
+    background: #ffe7e7;
+}
+#sred, #sblue {
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0px 3px;
+    width: 15px;
+    height: 15px;
+}

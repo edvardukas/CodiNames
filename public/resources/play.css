@@ -1,13 +1,13 @@
 @font-face {
-    src: url(f/Roboto-Regular.ttf);
+    src: url(fonts/Roboto-Regular.ttf);
     font-family: def;
 }
 @font-face {
-    src: url(f/Roboto-Light.ttf);
+    src: url(fonts/Roboto-Light.ttf);
     font-family: light;
 }
 @font-face {
-    src: url(f/Roboto-Bold.ttf);
+    src: url(fonts/Roboto-Bold.ttf);
     font-family: thick;
 }
 * {

@@ -3,6 +3,8 @@ requirejs.config({
     paths: {
     	jquery: 'https://code.jquery.com/jquery-3.0.0.min',
 		home: 'home',
+		header: "header",
+		play: "play",
 
 		firebase_app  : 'https://www.gstatic.com/firebasejs/3.1.0/firebase-app',
 		firebase_auth : 'https://www.gstatic.com/firebasejs/3.1.0/firebase-auth',

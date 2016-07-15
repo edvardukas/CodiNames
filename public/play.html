@@ -1,26 +1,10 @@
 <html>
 <head>
     <title>CodiNames - Game</title>
-    <link rel="stylesheet" type="text/css" href="play.css">
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
-    <script>
-        var config = {
-            apiKey: "AIzaSyCKpE3eKqYBpSCf0EXlfC-CfRiFDQRvVB4",
-            databaseURL: "https://codinames-b9676.firebaseio.com",
-        };
-        firebase.initializeApp(config);
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="resources/play.css">
+    <script data-main="resources/javascript/require-config" src="resources/javascript/jslibs/require-2.2.0.js"></script>
 </head>
 <body>
-<header>
-    CODINAMES
-    <div id="usr"></div>
-</header>
 
 <div id="board">
     <div class="square" class="red" id="a1">
@@ -76,6 +60,11 @@
 
     </div>
 </div>
-<script src="play.js"></script>
+<script>
+    require(['require-config'], function(){
+        require(['play']);
+        require(['header']);
+    });
+</script>
 </body>
 </html>
