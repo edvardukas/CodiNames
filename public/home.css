@@ -128,7 +128,7 @@ section > div:hover {
     background: rgba(0,0,0,0.3);
 }
 .join:hover {
-    background: #525e6b
+    background: rgba(0,0,0,0.5);
 }
 .pop {
     color: #000;
