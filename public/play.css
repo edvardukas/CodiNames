@@ -74,9 +74,6 @@ header {
     text-align: center;
 }
 
-.square {
-    border-color: 40, 40, 40, 0.4;
-}
 
 .square:hover {
     background: #ff4646;

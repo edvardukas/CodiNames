@@ -6,7 +6,7 @@ firebase.database().ref('games/'+fetchID()).once("value", function(data)
         var boardState = data.val().board;
             for (name in data.val().players){ //Loops through the database to find members of the red team
                 if (data.val().players[name].team == "red"){
-                    redTeam.push(name); //Pushes memebers intoan array
+                    redTeam.push(name); //Pushes memebers into an array
                 }
                 else if (data.val().players[name].team == "blue"){
                     blueTeam.push(name);
