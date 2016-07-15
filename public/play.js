@@ -14,7 +14,7 @@ firebase.database().ref("users/" + op.name).on('value', function(data) {
 function showGameData () {
     firebase.database().ref('games/'+fetchID()).once("value", function(data)
         {
-            var DOC = data.val().DOC; //Date of Creation
+            //var DOC = data.val().DOC; Date of Creation
 
             var boardState = { //creates the game board object
                 a: {
@@ -43,6 +43,8 @@ function showGameData () {
                 }
             }
 
+            var boardState = data.val().board;
+
             var redTeam = [];
             var blueTeam = [];
             for (name in data.val().players){ //Loops through the database to find members of the red team
@@ -54,54 +56,47 @@ function showGameData () {
                 }
             }
 
-            console.log(boardState,DOC,redTeam,blueTeam);
+            console.log(boardState,redTeam,blueTeam);
             constructBoard(boardState, redTeam, blueTeam);
         }
     )
 }
 
 function constructBoard(state, redTeam, blueTeam){
-    var board = document.getElementById("board")
-    var a1 = document.createElement("div"),
-    a2 = document.createElement("div"),
-    b1 = document.createElement("div"),
-    b2 = document.createElement("div")
-    $(a1).addClass("square"); //Tomorrow add IDs for each of these so that you can split them into colours on a team by team basis
-    $(a2).addClass("square");
-    $(b1).addClass("square");
-    $(b2).addClass("square");
-    $(a1).html("a1 <br>"
-    +"Covered? "+state.a[1].covered+"<br>"
-    +"Role? "+state.a[1].role+"<br>"
-    +"Word? "+state.a[1].word+"<br>"
-    );
 
-    $(a2).html("a2 <br>"
-    +"Covered? "+state.a[2].covered+"<br>"
-    +"Role? "+state.a[2].role+"<br>"
-    +"Word? "+state.a[2].word+"<br>"
-    );
+    console.log(state);
 
-    $(b1).html("b1 <br>"
-    +"Covered? "+state.b[1].covered+"<br>"
-    +"Role? "+state.b[1].role+"<br>"
-    +"Word? "+state.b[1].word+"<br>"
-    );
+    $("#a1 > covered").html("covered? "+a1.covered+"<br>");
+    $("#a2 > covered").html("covered? "+state.a2.covered+"<br>");
+    $("#b1 > covered").html("covered? "+state.b1.covered+"<br>");
+    $("#b2 > covered").html("covered? "+state.b2.covered+"<br>");
 
-    $(b2).html("b2 <br>"
-    +"Covered? "+state.b[2].covered+"<br>"
-    +"Role? "+state.b[2].role+"<br>"
-    +"Word? "+state.b[2].word+"<br>"
-    );
+    $("#a1 .role").html("role? "+state.a1.role+"<br>");
+    $("#a2 .role").html("role? "+state.a1.role+"<br>");
+    $("#b1 .role").html("role? "+state.b1.role+"<br>");
+    $("#b2 .role").html("role? "+state.b2.role+"<br>");
 
-    $(board).append(a1,a2,b1,b2);
-
-
+    $("#a1 .word").html("Word? "+state.a1.word+"<br>");
+    $("#a2 .word").html("Word? "+state.a2.word+"<br>");
+    $("#b1 .word").html("Word? "+state.b1.word+"<br>");
+    $("#b2 .word").html("Word? "+state.b2.word+"<br>");
 }
+
+    $(".word").click(function(){
+    firebase.database().ref("games/"+fetchID()+"/board/"+[this.parentElement.id]).update({
+        covered: true
+    })
+    console.log([this.id]+"changed");
+    $()
+
+
+});
+
 
 function fetchID(){
     return window.location.href.substr(window.location.href.indexOf("?g=")+3);
 }
+
 
 
 $(document).ready(showGameData())
