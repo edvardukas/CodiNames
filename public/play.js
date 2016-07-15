@@ -53,8 +53,17 @@ function showGameData () {
                 }
                 else{
                     blueTeam.push(name);
+
                 }
             }
+                for (var i = 0; i < redTeam.length; i++){
+                    console.log(i);
+                    $("#redTeam").append("<span>"+redTeam[i]+"</span>");
+                }
+                for (var i = 0; i < blueTeam.length; i++){
+                    console.log(i);
+                    $("#blueTeam").append("<span>"+blueTeam[i]+"</span><br>");
+                }
 
             console.log(boardState,redTeam,blueTeam);
             constructBoard(boardState, redTeam, blueTeam);
@@ -66,10 +75,10 @@ function constructBoard(state, redTeam, blueTeam){
 
     console.log(state);
 
-    $("#a1 > covered").html("covered? "+a1.covered+"<br>");
-    $("#a2 > covered").html("covered? "+state.a2.covered+"<br>");
-    $("#b1 > covered").html("covered? "+state.b1.covered+"<br>");
-    $("#b2 > covered").html("covered? "+state.b2.covered+"<br>");
+    $("#a1 .covered").html("covered? "+state.a1.covered+"<br>");
+    $("#a2 .covered").html("covered? "+state.a2.covered+"<br>");
+    $("#b1 .covered").html("covered? "+state.b1.covered+"<br>");
+    $("#b2 .covered").html("covered? "+state.b2.covered+"<br>");
 
     $("#a1 .role").html("role? "+state.a1.role+"<br>");
     $("#a2 .role").html("role? "+state.a1.role+"<br>");
@@ -86,12 +95,28 @@ function constructBoard(state, redTeam, blueTeam){
     firebase.database().ref("games/"+fetchID()+"/board/"+[this.parentElement.id]).update({
         covered: true
     })
+
     console.log([this.id]+"changed");
     $()
 
-
 });
 
+firebase.database().ref("games/"+fetchID()+"/board").on("value",function(data){
+    $("#a1 .covered").html("covered? "+data.val().a1.covered+"<br>");
+    $("#a2 .covered").html("covered? "+data.val().a2.covered+"<br>");
+    $("#b1 .covered").html("covered? "+data.val().b1.covered+"<br>");
+    $("#b2 .covered").html("covered? "+data.val().b2.covered+"<br>");
+
+    $("#a1 .role").html("role? "+data.val().a1.role+"<br>");
+    $("#a2 .role").html("role? "+data.val().a1.role+"<br>");
+    $("#b1 .role").html("role? "+data.val().b1.role+"<br>");
+    $("#b2 .role").html("role? "+data.val().b2.role+"<br>");
+
+    $("#a1 .word").html("Word? "+data.val().a1.word+"<br>");
+    $("#a2 .word").html("Word? "+data.val().a2.word+"<br>");
+    $("#b1 .word").html("Word? "+data.val().b1.word+"<br>");
+    $("#b2 .word").html("Word? "+data.val().b2.word+"<br>");
+})
 
 function fetchID(){
     return window.location.href.substr(window.location.href.indexOf("?g=")+3);
