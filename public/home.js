@@ -29,16 +29,8 @@ function create(data) {
                 $(team).html("Team: ");
                 $(opponents).html("Opponents: ");
                 for (name in edata.val().players) {
-                    console.log(name);
-                    if (edata.val().players[op.name].team) {
-                        console.log("NOT IN TEAM");
-                       // if (edata.val().players[name].team === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
-                       // else $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
-                    } else {
-                        console.log("IN TEAM");
-                      //  if ("red" === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
-                      //  else if ("blue" === edata.val().players[op.name].team) $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
-                    }
+                        if (edata.val().players[name].team === edata.val().players[op.name].team) $(team).append((($(team).html() === "Team: ") ? "" : ", ") + name);
+                        else $(opponents).append((($(opponents).html() === "Opponents: ") ? "" : ", ") + name);
                 }
                 game.id = e;
                 team.className = "team";
