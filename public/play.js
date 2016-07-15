@@ -39,7 +39,7 @@ firebase.database().ref("games/" + fetchID() + "/board").on("value", function(da
 function fill(data) {
     for (var i = 0; i < redTeam.length; i++) {
         console.log(i, redTeam, blueTeam);
-        $("#redTeam").append("<span>" + redTeam[i] + "</span>");
+        $("#redTeam").append("<span>" + redTeam[i] + "</span><br>");
     }
     for (var i = 0; i < blueTeam.length; i++) {
         console.log(i);
