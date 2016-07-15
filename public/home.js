@@ -61,10 +61,11 @@ function create(data) {
 
                 } else $("#gamecontainer").append(game);
 
-            }  /* else {
-                             $("#" + e + "> .team").html("Team: " + edata.games[gc].team.join(", "));
-                             $("#" + e + "> .opp").html("Team: " + edata.games[gc].opp.join(", "));
-                         } */
+            }
+            /* else {
+                                       $("#" + e + "> .team").html("Team: " + edata.games[gc].team.join(", "));
+                                       $("#" + e + "> .opp").html("Team: " + edata.games[gc].opp.join(", "));
+                                   } */
             if (b >= data.games.length - 1) {
                 finishedGames.filter(function(z) {
                     $("#gamecontainer").append(z)
