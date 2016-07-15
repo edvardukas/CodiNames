@@ -25,9 +25,8 @@ html { background: #F7F8FA }
     top: 70px;
     text-align: center;
     width: 100%;
-    max-height: 100%;
+    max-height: calc(100% - 70px);
     position: fixed;
-    bottom: 0px;
 }
 #gamecontainer {
     position: relative;
@@ -78,7 +77,7 @@ header {
     height: 50px;
     width: calc(100% - 20px);
     border-radius: 5px;
-    max-width: 980px;
+    max-width: 1020px;
     line-height: 50px;
 }
 #usr {
@@ -114,17 +113,15 @@ section {
     max-width: calc(100% - 20px);
 }
 section > div {
+    word-break: break-all;
     transition-duration: 0.15s;
     width: 100%;
-    color: #333;
     bottom: 0px;
-    background: rgba(255, 255, 255, 0.3);
     height: 50px;
     line-height: 50px;
-    text-indent: 20px;
 }
 section > div:hover {
-    background: rgba(255, 255, 255, 0.4)
+    background: rgba(255, 255, 255, 0.1)
 }
 .join {
     text-decoration: none;
@@ -138,6 +135,19 @@ section > div:hover {
 }
 .join:hover {
     background: rgba(0,0,0,0.5);
+}
+.opp:before {
+    content: "Opponents"
+}
+.team:before {
+    content: "Team"
+}
+.opp:before, .team:before {
+    margin-right: 15px;
+    padding: 0px 20px;
+    background: rgba(0,0,0,0.1);
+    display: inline-block;
+    width: 100px;
 }
 .pop {
     color: #000;
