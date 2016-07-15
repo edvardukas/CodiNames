@@ -39,11 +39,11 @@ firebase.database().ref("games/" + fetchID() + "/board").on("value", function(da
 function fill(data) {
     for (var i = 0; i < redTeam.length; i++) {
         console.log(i, redTeam, blueTeam);
-        $("#redTeam").append("<span>" + redTeam[i] + "</span><br>");
+        $("#redTeam").append("<span>" + redTeam[i] + "</span><br/>");
     }
     for (var i = 0; i < blueTeam.length; i++) {
         console.log(i);
-        $("#blueTeam").append("<span>" + blueTeam[i] + "</span><br>");
+        $("#blueTeam").append("<span>" + blueTeam[i] + "</span><br/>");
     }
 
     $(".square").filter(function(square, i) {
