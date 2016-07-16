@@ -103,6 +103,7 @@ header {
     font-family: light;
 }
 section {
+    height: 140px;
     overflow: hidden;
     text-align: left;
     margin: 10px;

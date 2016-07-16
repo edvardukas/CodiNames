@@ -11,8 +11,10 @@ define(['jquery', 'firebase'], function($, firebase) {
     var test;
 
     firebase.database().ref("games").on('child_removed', function(game) {
-        console.log("elo",(game.val().players[op.name]),($("#" + game.val())));
-        if (game.val().players[op.name]) $("#" + game.val()).remove();
+        $("#" + game.key).css("height", 0);
+        setTimeout(function() {
+            $("#" + game.key).remove()
+        }, 300);
     });
 
     firebase.database().ref("users/" + op.name).on('value', function(data) {
@@ -21,47 +23,47 @@ define(['jquery', 'firebase'], function($, firebase) {
     });
 
     function create(data) {
-        data.games.filter(function(game){
+        data.games.filter(function(game) {
             firebase.database().ref("games/" + game).once('value', function(Gdata) {
 
                 var gdata = Gdata.val();
-                if (!$("#"+game)[0]) {
+                if (!$("#" + game)[0]) {
                     var gteam,
-                    container = document.createElement("section"),
-                    join = document.createElement("a"),
-                    opponents = document.createElement("div"),
-                    team = document.createElement("div");
+                        container = document.createElement("section"),
+                        join = document.createElement("a"),
+                        opponents = document.createElement("div"),
+                        team = document.createElement("div");
                     join.className = "join";
                     opponents.className = "opp";
                     team.className = "team";
                     container.id = game;
-                    join.href = "play.html?g="+game;
-                        $(join).html("Join")
-                    if (gdata.players[op.name]) gteam = gdata.players[op.name].team || function(){
-                    $(join).html("spectate");
-                    return "red"
+                    join.href = "play.html?g=" + game;
+                    $(join).html("Join")
+                    if (gdata.players[op.name]) gteam = gdata.players[op.name].team || function() {
+                        $(join).html("spectate");
+                        return "red"
                     }();
                     else {
                         gteam = "red";
                         $(join).html("spectate")
                     }
-                for (player in gdata.players) {
-                    if ( gdata.players[player].team == gteam) { // team check: IF SAME TEAM
-                        $(team).append((($(team).html())?" • ":"")+player)
-                    } else if ( gdata.players[player].team == (gteam=="red"?"blue":"red")) {  // team check: IF OPPOING TEAM ( NO ELSE )
-                        $(opponents).append((($(opponents).html())?" • ":"")+player)
+                    for (player in gdata.players) {
+                        if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
+                            $(team).append((($(team).html()) ? " • " : "") + player)
+                        } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOING TEAM ( NO ELSE )
+                            $(opponents).append((($(opponents).html()) ? " • " : "") + player)
+                        }
                     }
-                }
-                $(container).append(team,opponents,join);
-                $("#gamecontainer").append(container);
+                    $(container).append(team, opponents, join);
+                    $("#gamecontainer").append(container);
                 } else {
                     for (player in gdata.players) {
-                                        if ( gdata.players[player].team == gteam) { // team check: IF SAME TEAM
-                                            $("#"+game+" > .team ").append((($("#"+game+" > .team ").html())?" • ":"")+player)
-                                        } else if ( gdata.players[player].team == (gteam=="red"?"blue":"red")) {  // team check: IF OPPOING TEAM ( NO ELSE )
-                                            $("#"+game+" > .opp ").append((($("#"+game+" > .opp ").html())?" • ":"")+player)
-                                        }
-                                    }
+                        if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
+                            $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + player)
+                        } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOING TEAM ( NO ELSE )
+                            $("#" + game + " > .opp ").append((($("#" + game + " > .opp ").html()) ? " • " : "") + player)
+                        }
+                    }
                 }
             });
         })
@@ -184,7 +186,7 @@ define(['jquery', 'firebase'], function($, firebase) {
         }
     });
 
-    $("#hs").click(function() {
+    $("#slide").click(function() {
         if (parseInt($("#gcc").css("top")) === 70) {
             $("#gcc").css("top", -($("#gcc").height() - 50));
             $("#slide").css("transform", "rotate(180deg)")
