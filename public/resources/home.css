@@ -29,8 +29,7 @@ html { background: #F7F8FA }
     position: fixed;
 }
 #gamecontainer {
-    position: relative;
-    max-height: calc(100% - 50px);
+    height: calc(100vh - 120px);
     padding: 10px;
     overflow-y: auto;
 }
@@ -50,6 +49,7 @@ html { background: #F7F8FA }
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
 }
 #hs {
+    box-shadow: 0px -10px 10px #F7F8FA;
     position: relative;
     height: 50px;
     width: 100%;

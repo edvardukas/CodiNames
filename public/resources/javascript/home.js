@@ -58,7 +58,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                     for (player in gdata.players) {
                         if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
                             $(team).append((($(team).html()) ? " • " : "") + player)
-                        } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOING TEAM ( NO ELSE )
+                        } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
                             $(opponents).append((($(opponents).html()) ? " • " : "") + player)
                         }
                     }
@@ -78,7 +78,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                     for (player in gdata.players) {
                         if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
                             $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + player)
-                        } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOING TEAM ( NO ELSE )
+                        } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
                             $("#" + game + " > .opp ").append((($("#" + game + " > .opp ").html()) ? " • " : "") + player)
                         }
                     }
@@ -209,7 +209,7 @@ define(['jquery', 'firebase'], function($, firebase) {
 
     $("#slide").click(function() {
         if (parseInt($("#gcc").css("top")) === 70) {
-            $("#gcc").css("top", -($("#gcc").height() - 50));
+            $("#gcc").css("top", -($("#gcc").height() - 120));
             $("#slide").css("transform", "rotate(180deg)")
         } else {
             $("#gcc").css("top", 70);
