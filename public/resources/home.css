@@ -109,7 +109,7 @@ section {
     margin: 10px;
     display: inline-block;
     width: 500px;
-    background: #99abbb;
+    background: #707d8a;
     border-radius: 3px;
     max-width: calc(100% - 20px);
 }
@@ -129,6 +129,7 @@ section > div:hover {
     display: inline-block;
     color: white;
     text-align: center;
+    font-size: 14px;
     height: 40px;
     width: 100%;
     line-height: 40px;
@@ -233,7 +234,7 @@ h2 {
     font-size: 18px;
 }
 .finished {
-    background: #eac6c6
+    background: #614d4d
 }
 [name="blue"] {
     background: #e7f5ff;

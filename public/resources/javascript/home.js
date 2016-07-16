@@ -5,10 +5,10 @@ define(['jquery', 'firebase'], function($, firebase) {
     }
 
     var op = {
-        name: "testUser"
-    }
+            name: "testUser"
+        },
 
-    var test;
+        finished = [];
 
     firebase.database().ref("games").on('child_removed', function(game) {
         $("#" + game.key).css({
@@ -30,18 +30,19 @@ define(['jquery', 'firebase'], function($, firebase) {
     });
 
     function create(data) {
-        data.games.filter(function(game) {
+        data.games.filter(function(game, i) {
             firebase.database().ref("games/" + game).once('value', function(Gdata) {
 
                 var gdata = Gdata.val(),
+                    button = "JOIN",
                     gteam;
                 if (gdata.players[op.name]) gteam = gdata.players[op.name].team || function() {
-                    $(join).html("spectate");
+                    button = "SPECTATE";
                     return "red"
                 }();
                 else {
                     gteam = "red";
-                    $(join).html("spectate")
+                    button = "SPECTATE";
                 }
                 if (!$("#" + game)[0]) {
                     var container = document.createElement("section"),
@@ -53,7 +54,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                     team.className = "team";
                     container.id = game;
                     join.href = "play.html?g=" + game;
-                    $(join).html("Join");
+                    $(join).html(button);
                     for (player in gdata.players) {
                         if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
                             $(team).append((($(team).html()) ? " • " : "") + player)
@@ -62,10 +63,18 @@ define(['jquery', 'firebase'], function($, firebase) {
                         }
                     }
                     $(container).append(team, opponents, join);
-                    if (game.isFinished) finished.push(container);
+                    if (gdata.isFinished) finished.push(container);
                     else $("#gamecontainer").append(container);
                 } else {
                     $("#" + game + " > .opp, #" + game + " > .team ").html("");
+                    $(join).html(button);
+                    if (gdata.isFinished) {
+                        $("#" + game).addClass("finished");
+                        $("#" + game + "> .join").html("VIEW SCORES");
+                    } else {
+                        $("#" + game).removeClass("finished");
+                        $("#" + game + "> .join").html(button);
+                    }
                     for (player in gdata.players) {
                         if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
                             $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + player)
@@ -74,7 +83,10 @@ define(['jquery', 'firebase'], function($, firebase) {
                         }
                     }
                 }
-            });
+            }).then(
+                finished.filter(function(fgame) {
+                    $("#gamecontainer").append(fgame);
+                }));
         })
     }
 
