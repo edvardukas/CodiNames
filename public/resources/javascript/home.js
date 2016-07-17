@@ -1,14 +1,9 @@
 define(['jquery', 'firebase'], function($, firebase) {
 
-    function cap(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    var op = {
-            name: "testUser"
-        },
-
-        finished = [];
+    window.op = {
+        name: "testUser"
+    },
+    var finished = [];
 
     firebase.database().ref("games").on('child_removed', function(game) {
         $("#" + game.key).css({
@@ -25,7 +20,6 @@ define(['jquery', 'firebase'], function($, firebase) {
         });
     });
     firebase.database().ref("users/" + op.name).on('value', function(data) {
-        $("#usr").html(cap(data.val() ? data.val().Name : "guest"));
         create(data.val());
     });
 
@@ -63,6 +57,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                         }
                     }
                     $(container).append(team, opponents, join);
+                    if (button === "SPECTATE") $(container).addClass("spectate");
                     if (gdata.isFinished) finished.push(container);
                     else $("#gamecontainer").append(container);
                 } else {
@@ -153,23 +148,23 @@ define(['jquery', 'firebase'], function($, firebase) {
             "board": {
                 "a1": {
                     "covered": false,
-                    "role": "ROLE",
-                    "word": "WORD"
+                    "role": "",
+                    "word": ""
                 },
                 "a2": {
                     "covered": false,
-                    "role": "ROLE",
-                    "word": "WORD"
+                    "role": "",
+                    "word": ""
                 },
                 "b1": {
                     "covered": false,
-                    "role": "ROLE",
-                    "word": "WORD"
+                    "role": "",
+                    "word": ""
                 },
                 "b2": {
                     "covered": false,
-                    "role": "ROLE",
-                    "word": "WORD"
+                    "role": "",
+                    "word": ""
                 }
             },
             "creator": op.name,
