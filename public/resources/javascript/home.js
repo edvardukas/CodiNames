@@ -1,8 +1,4 @@
 define(['jquery', 'firebase'], function($, firebase) {
-
-    window.op = {
-        name: "testUser"
-    };
     var finished = [];
 
     firebase.database().ref("games").on('child_removed', function(game) {
