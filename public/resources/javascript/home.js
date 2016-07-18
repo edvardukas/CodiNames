@@ -2,7 +2,7 @@ define(['jquery', 'firebase'], function($, firebase) {
 
     window.op = {
         name: "testUser"
-    },
+    };
     var finished = [];
 
     firebase.database().ref("games").on('child_removed', function(game) {
@@ -188,7 +188,10 @@ define(['jquery', 'firebase'], function($, firebase) {
 
     var isVisible = false;
     $("#rulesButton").click(function() {
-        if (isVisible == false) {
+        if (isVisible) {
+            closePop();
+            isVisible = false;
+        } else {
             $("#rules").css({
                 "top": 0,
                 "opacity": 1,
@@ -196,9 +199,6 @@ define(['jquery', 'firebase'], function($, firebase) {
             });
             isVisible = true;
             Blur();
-        } else {
-            closePop();
-            isVisible = false;
         }
     });
 
