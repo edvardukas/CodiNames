@@ -1,0 +1,20 @@
+{
+  "name": "codinames",
+  "version": "1.0.0",
+  "description": "<i>CodiNames</i> - it's like CodeNames but with an i.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edvardukas/CodiNames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edvardukas/CodiNames/issues"
+  },
+  "homepage": "https://github.com/edvardukas/CodiNames#readme"
+}

@@ -2,10 +2,6 @@ define(['jquery', 'firebase'], function($, firebase) {
     var game = decodeURIComponent((new RegExp('[?|&]g=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null,
         spectate = decodeURIComponent((new RegExp('[?|&]spectate=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
         // grabbing URL Parameters;
-    window.op = {
-        name: "testUser"
-    };
-        // options variable;
 
     function fill(board) {
         $(".square").each(function() {
