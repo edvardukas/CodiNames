@@ -47,7 +47,6 @@ define(['jquery', 'firebase'], function($, firebase) {
             )}}
 
         $(".word").click(function() {
-<<<<<<< HEAD
                 var word = this;
                 $.ajax({
                     type: "GET",
@@ -61,17 +60,6 @@ define(['jquery', 'firebase'], function($, firebase) {
                 $("#" + word.parentElement.id + " > .role").html(game.val().board[word.parentElement.id].role);
             })
             // Fills Role, and then flips, when corresponding word card is clicked;
-=======
-            firebase.database().ref('games/'+game+'/turn').once('value', function(){
-                firebase.ref('games/'+game+'/players/'+op.name+'/team').once('teamName', function(){
-                    if(teamName == value){
-
-                }
-                }))
-            })
-        })
->>>>>>> 2935a6e534f4e667da9074e553dd2e002c341e10
     }
-        // Fills Role, and then flips, when corresponding word card is clicked;
 
 })
