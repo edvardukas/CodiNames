@@ -31,7 +31,7 @@ html {
     position: fixed;
 }
 #gamecontainer {
-    height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
     padding: 10px;
     overflow-y: auto;
 }
