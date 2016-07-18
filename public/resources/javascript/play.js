@@ -1,13 +1,13 @@
 define(['jquery', 'firebase'], function($, firebase) {
     var game = decodeURIComponent((new RegExp('[?|&]g=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null,
         spectate = decodeURIComponent((new RegExp('[?|&]spectate=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-        // grabbing URL Parameters;
+    // grabbing URL Parameters;
 
     function fill(board) {
         $(".square").each(function() {
-            $("#" + this.id + " > .word").html(board[this.id].word);
-        })
-        // Loops through every square and fills word;
+                $("#" + this.id + " > .word").html(board[this.id].word);
+            })
+            // Loops through every square and fills word;
     }
     firebase.database().ref('games/' + game).on("value", function(data) {
         if (!$("#redTeam").html().replace(/\s/g, "") && !$("#blueTeam").html().replace(/\s/g, "")) {
@@ -18,7 +18,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                     $("#blueTeam").append("<span>" + player + "</span><br/>")
                 }
             }
-        // fills teams;
+            // fills teams;
         }
         fill(data.val().board);
     })
@@ -29,14 +29,18 @@ define(['jquery', 'firebase'], function($, firebase) {
         $("body").append(spec);
     } else {
         $(".word").click(function() {
-            var word = this;
-            firebase.database().ref('games/' + game + "/board").once("value", function(board) {
-                $("#" + word.parentElement.id + " > .role").html(board.val()[word.parentElement.id].role);
-            }).then(function() {
-                $("#" + word.parentElement.id + " > .role").css("transform", "rotateY(360deg)");
-                $(word).css("transform", "rotateY(180deg)");
+                var word = this;
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/turn",
+                    success: function(a,b,c) {
+                        console.log(a,b,c)
+                        $("#" + word.parentElement.id + " > .role").css("transform", "rotateY(360deg)");
+                        $(word).css("transform", "rotateY(180deg)");
+                    }
+                });
+                $("#" + word.parentElement.id + " > .role").html(game.val().board[word.parentElement.id].role);
             })
-        })
-        // Fills Role, and then flips, when corresponding word card is clicked;
+            // Fills Role, and then flips, when corresponding word card is clicked;
     }
 })

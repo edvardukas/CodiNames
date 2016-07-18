@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/edvardukas/CodiNames/issues"
   },
-  "homepage": "https://github.com/edvardukas/CodiNames#readme"
+  "homepage": "https://github.com/edvardukas/CodiNames#readme",
+  "dependencies": {
+    "cors": "^2.7.1"
+  }
 }
