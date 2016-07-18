@@ -16,13 +16,22 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(express.static('public'));
+
 app.post("/turn",function(req,res){
-    console.log(req.body.game,req.body.square);
+    var nextTurn,
+        player;
     firebase.database().ref("games/"+req.body.game).once("value",function(game){
-        if (game.val().players[req.body.name].team == game.val().turn) firebase.database().ref("games/"+req.body.game+"/turn").set((game.val().turn == "red")?"blue":"red");
-    }).then(function(game){
-        $(game.val().players[req.body.name].team == game.val().turn)
-        res.send(game.val().board[req.body.square].role);
+        player = game.val().players[req.body.name];
+        nextTurn = (game.val().turn == "red")? "blue":"red";
+        if (player.team == game.val().turn) {
+            firebase.database().ref("games/"+req.body.game+"/turn").set(nextTurn).then(function(){
+                res.send(game.val().board[req.body.square].role);
+            }).catch(function(err){
+                console.log(err);
+                res.send(err)
+            })
+        } else  res.send(game.val().board[req.body.square].role);
     })
     firebase.database().ref("games/"+req.body.game+"/board/"+req.body.square+"/covered").set("true");
 })
