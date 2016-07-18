@@ -142,27 +142,36 @@ define(['jquery', 'firebase'], function($, firebase) {
         firebase.database().ref("users/" + op.name + "/games").once("value", function(edata) {
             games = edata.val();
         })
+        var roles = ["Assassin", "Bystander", "Red", "Blue"];
+        function shuffleArray(a) {
+            var i = a.length, t, j;
+            a = a.slice();
+            while (--i) t = a[i], a[i] = a[j = ~~(Math.random() * (i+1))], a[j] = t;
+            return a;
+        }
+        roles = shuffleArray(roles);
+        console.log(roles);
         key = firebase.database().ref('games').push({
             "DOC": new Date(),
             "board": {
                 "a1": {
                     "covered": false,
-                    "role": "",
+                    "role": roles[0],
                     "word": ""
                 },
                 "a2": {
                     "covered": false,
-                    "role": "",
+                    "role": roles[1],
                     "word": ""
                 },
                 "b1": {
                     "covered": false,
-                    "role": "",
+                    "role": roles[2],
                     "word": ""
                 },
                 "b2": {
                     "covered": false,
-                    "role": "",
+                    "role": roles[3],
                     "word": ""
                 }
             },
