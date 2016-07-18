@@ -55,6 +55,7 @@ header {
     float: left;
     padding-left: 8px;
     border-left: 4px solid #FF0000;
+    border-bottom-right-radius: 10px;
 }
 #blueTeam{
     background: #e7e7ff;
@@ -62,6 +63,7 @@ header {
     padding-right: 8px;
     text-align: right;
     border-right: 4px solid #0000FF;
+    border-bottom-left-radius: 10px;
 }
 #blueTeam > span, #redTeam > span {
     display: inline-block;

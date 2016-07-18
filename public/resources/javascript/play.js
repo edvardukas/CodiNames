@@ -36,9 +36,11 @@ define(['jquery', 'firebase'], function($, firebase) {
                     url: "http://localhost:3000/turn",
                     data: {
                         game:game,
-                        square: word.parentElement.id
+                        square: word.parentElement.id,
+                        name:op.name
                     },
                     success: function(a,b,c) {
+                        $("#" + word.parentElement.id + " > .role").html(c.responseText)
                         console.log(a,b,c);
                         $("#" + word.parentElement.id + " > .role").css("transform", "rotateY(360deg)");
                         $(word).css("transform", "rotateY(180deg)");
