@@ -57,7 +57,10 @@ define(['jquery', 'firebase'], function($, firebase) {
                         }
                     }
                     $(container).append(team, opponents, join);
-                    if (button === "SPECTATE") $(container).addClass("spectate");
+                    if (button === "SPECTATE") {
+                        $(container).addClass("spectate");
+                        join.href += "&spectate=true";
+                    }
                     if (gdata.isFinished) finished.push(container);
                     else $("#gamecontainer").append(container);
                 } else {
