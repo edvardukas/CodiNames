@@ -21,13 +21,22 @@ define(['jquery', 'firebase'], function($, firebase) {
             $("#" + this.id + " > .word").html(board[this.id].word);
         })
     }
+
     $(".word").click(function(){
-        var word = this;
-        firebase.database().ref('games/' + game +"/board").once("value", function(board) {
-            $("#" + word.parentElement.id + " > .role").html(board.val()[word.parentElement.id].role);
-        }).then(function(){
-            $("#" + word.parentElement.id + " > .role").css("transform","rotateY(360deg)");
-            $(word).css("transform","rotateY(180deg)");
-        })
+        if(firebase.database().ref('games/'+game+'/turn').once('value') == firebase.database().ref('games/'+game+'/players/'+op.name+'/team').once('value')){
+            if (firebase.database().ref('games/'+game+'/turn').once('value') == "red"){
+                firebase.database().ref('games/'+game+'/turn').once('value').update("blue");
+            }
+            else{
+                firebase.database().ref('games/'+game+'/turn').once('value').update("red");
+            }
+            var word = this;
+            firebase.database().ref('games/' + game +"/board").once("value", function(board) {
+                $("#" + word.parentElement.id + " > .role").html(board.val()[word.parentElement.id].role);
+            }).then(function(){
+                $("#" + word.parentElement.id + " > .role").css("transform","rotateY(360deg)");
+                $(word).css("transform","rotateY(180deg)");
+            })
+        }
     })
 })

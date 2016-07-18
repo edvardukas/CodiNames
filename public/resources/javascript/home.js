@@ -169,7 +169,8 @@ define(['jquery', 'firebase'], function($, firebase) {
             },
             "creator": op.name,
             "isFinished": false,
-            "players": players
+            "players": players,
+            "turn": "red"
         }).key;
         games.push(key);
         console.log(players)
