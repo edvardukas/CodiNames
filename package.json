@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/edvardukas/CodiNames/issues"
   },
-  "homepage": "https://github.com/edvardukas/CodiNames#readme"
+  "homepage": "https://github.com/edvardukas/CodiNames#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "firebase": "^3.2.0"
+  }
 }
