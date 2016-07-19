@@ -1,0 +1,30 @@
+
+<html>
+<head>
+    <title>CodiNames - It's like CodeNames but with an i!</title>
+    <link rel="stylesheet" type="text/css" href="resources/sign-in.css">
+
+    <script data-main="resources/javascript/require-config" src="resources/javascript/jslibs/require-2.2.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css">
+
+
+</head>
+<body>
+
+
+
+
+<div id="firebaseui-auth-container"></div>
+<script>
+    window.op = {
+        name: "testUser"
+    };
+
+         require(['require-config'], function(){
+         require(['signin']);
+         });
+</script>
+<script type="text/javascript" src="resources/javascript/sign-in.js"></script>
+</body>
+</html>
