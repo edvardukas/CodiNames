@@ -24,14 +24,11 @@ app.post("/turn",function(req,res){
     firebase.database().ref("games/"+req.body.game).once("value",function(game){
         player = game.val().players[req.body.name];
         nextTurn = (game.val().turn == "red")? "blue":"red";
-        if (player.team == game.val().turn) {
+        if (player.team === game.val().turn) {
             firebase.database().ref("games/"+req.body.game+"/turn").set(nextTurn).then(function(){
                 res.send(game.val().board[req.body.square].role);
-            }).catch(function(err){
-                console.log(err);
-                res.send(err)
             })
-        } else  res.send(game.val().board[req.body.square].role);
+        } else res.send("NOT UR GO");
     })
     firebase.database().ref("games/"+req.body.game+"/board/"+req.body.square+"/covered").set("true");
 })
