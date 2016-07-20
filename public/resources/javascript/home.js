@@ -142,7 +142,7 @@ define(['jquery', 'firebase'], function($, firebase) {
         firebase.database().ref("users/" + op.name + "/games").once("value", function(edata) {
             games = edata.val();
         })
-        var roles = ["Assassin", "Bystander", "Red", "Blue"];
+        var roles = ["assassin", "bystander", "red", "blue"];
         function shuffleArray(a) {
             var i = a.length, t, j;
             a = a.slice();
