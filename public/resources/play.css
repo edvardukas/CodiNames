@@ -100,6 +100,7 @@ header {
     perspective: 1500px;
 }
 .word,.role {
+    box-shadow: 0px 3px 5px #AAA;
     font-size: 25px;
     line-height: 230px;
     color: #000;
@@ -109,12 +110,21 @@ header {
     -webkit-backface-visibility: hidden;
    	backface-visibility: hidden;
     transition-duration: 1s;
-    box-shadow: 0px 3px 5px #AAA;
     text-align: center;
     border-radius: 10px;
 }
 .word {
     background: #EEE;
+}
+.word:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 5px;
+    border: 3px solid #CCC;
 }
 .role {
     background: #F8F8F8;
@@ -129,4 +139,39 @@ header {
     height: 50px;
     line-height: 50px;
     text-align: center;
+}
+#masterv {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    margin: 0px auto;
+    height: 300px;
+    width: 300px;
+}
+#masterv > div {
+    float: left;
+    width: calc(50% - 20px);
+    height: calc(50% - 20px);
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 5px #AAA;
+}
+.red {
+    background: #E80E26;
+    background-image: url(spy2.png);
+    background-size: contain;
+}
+.blue {
+    background: #006BE8;
+    background-image: url(spy2.png);
+    background-size: contain;
+}
+.assassin {
+    background: #666;
+    background-image: url(assassin.png);
+    background-size: contain;
+}
+.bystander {
+    background: #ffe9c0;
 }
