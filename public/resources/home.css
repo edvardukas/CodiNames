@@ -219,3 +219,12 @@ h2 {
     width: 15px;
     height: 15px;
 }
+#login {
+    position: fixed;
+    right: 0%;
+    top: 6%;
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    background: blue;
+}
