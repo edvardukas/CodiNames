@@ -59,6 +59,7 @@ form > input {
     height: 60px;
     font-size: 19px;
     color: #FFF;
+    text-indent: 0px;
 }
 label {
     height: 20px;
