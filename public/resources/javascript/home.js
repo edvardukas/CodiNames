@@ -1,6 +1,13 @@
 define(['jquery', 'firebase'], function($, firebase) {
     var finished = [];
 
+    var user = firebase.auth().currentUser;
+
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        console.log(user);
+    });
+
     firebase.database().ref("games").on('child_removed', function(game) {
         $("#" + game.key).css({
             height: 0,
