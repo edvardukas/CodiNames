@@ -23,19 +23,24 @@ html {
     outline: 0px;
     color: #FFF
 }
-form {
-    padding: 13px 20px;
+#cont {
+    text-align: center;
     width: 100%;
     max-width: 500px;
+    height: 430px;
     max-height: calc(100% - 70px);
-    height: 392px;
-    background: #FFF;
     position: absolute;
     top: 70px;
     bottom: 0px;
     left: 0px;
     right: 0px;
     margin: auto;
+}
+form {
+    text-align: left;
+    padding: 13px 20px;
+    width: 100%;
+    background: #FFF;
 }
 form, form * {
     color: #333;
@@ -57,4 +62,16 @@ form > input {
 }
 label {
     height: 20px;
+}
+#sw {
+    margin-top: 10px;
+    display: inline-block;
+    color: #000;
+    font-size: 18px;
+}
+label[for="passcom"],label[for="user"],input[name="passcom"],input[name="user"] {
+    display: inline-block;
+    height: 0px;
+    margin: 0px;
+    opacity: 0;
 }

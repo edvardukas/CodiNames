@@ -5,17 +5,20 @@
     <script data-main="resources/javascript/require-config" src="resources/javascript/jslibs/require-2.2.0.js"></script>
 </head>
 <body>
+<div id="cont">
     <form>
         <label for="user">Username</label><br/>
         <input name="user"/>
         <label for="email">E-Mail</label><br/>
         <input name="email"/>
         <label for="password">Password</label><br/>
-        <input name="password"/>
+        <input name="password" type="password"/>
         <label for="passcom">Confirm Password</label><br/>
-        <input name="passcom"/>
+        <input name="passcom" type="password"/>
         <input name="go" value="Log in" type="submit"/>
     </form>
+    <span id="sw">Sign Up</span>
+</div>
 <script>
          require(['require-config'], function(){
              require(['auth']);
