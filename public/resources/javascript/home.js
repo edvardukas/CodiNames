@@ -5,13 +5,7 @@ define(['jquery', 'firebase'], function($, firebase) {
 
 
     firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log("User is signed in")
-        $("#login").html("<p onclick=''>Sign out<p>");
-      } else {
-        console.log("No user is signed in.")
-        $("#login").html("<a href='sign-in.html'>Log In<a>");
-      }
+        console.log(user);
     });
 
     firebase.database().ref("games").on('child_removed', function(game) {
