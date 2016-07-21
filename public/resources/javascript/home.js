@@ -49,7 +49,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                         if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
                             $(team).append((($(team).html()) ? " • " : "") + player)
                         } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
-                            $(opponents).append((($(opponents).html()) ? " • " : "") + player)
+                            $(opponents).append((($(opponents).html()) ? " • " : "") + player);
                         }
                     }
                     $(container).append(team, opponents, join);

@@ -12,6 +12,8 @@ requirejs.config({
 		firebase      : 'https://www.gstatic.com/firebasejs/3.1.0/firebase'
     },
 	shim: {
+
+
 		'firebase': {
 			deps:   ['firebase_app', 'firebase_auth', 'firebase_db'],
 			exports: 'firebase',
@@ -25,5 +27,7 @@ requirejs.config({
 				this.firebase.initializeApp(config);
 			}
 		}
+
 	}
+
 });

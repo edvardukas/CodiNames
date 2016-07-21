@@ -43,7 +43,7 @@ html {
     top: 0px;
     position: absolute;
     transform: rotate(0deg);
-    transition-duration: 0.6s;
+    transition-duration: 0.15s;
     transition-timing-function: ease-in-out;
     background: #FFF;
     border-radius: 50%;
@@ -218,4 +218,13 @@ h2 {
     margin: 0px 3px;
     width: 15px;
     height: 15px;
+}
+#login {
+    position: fixed;
+    right: 0%;
+    top: 6%;
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    background: blue;
 }

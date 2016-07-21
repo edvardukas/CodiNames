@@ -1,7 +1,4 @@
 define(['jquery', 'firebase'], function($, firebase){
-    function cap(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
     header = document.createElement("header");
     $(header).prepend('<button id="rulesButton">?</button> CODINAMES <div id="usr"> </div>');
     $("body").prepend(header);
