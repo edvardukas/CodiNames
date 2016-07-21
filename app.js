@@ -28,7 +28,7 @@ app.post("/turn",function(req,res){
             firebase.database().ref("games/"+req.body.game+"/turn").set(nextTurn).then(function(){
                 res.send(game.val().board[req.body.square].role);
             })
-        } else res.send("NOT UR GO");
+        } else res.send();
     })
     firebase.database().ref("games/"+req.body.game+"/board/"+req.body.square+"/covered").set("true");
 })
