@@ -11,6 +11,7 @@
     font-family: thick;
 }
 * {
+    overflow: hidden;
     transition-property: opacity;
     transition: all 0.3s ease;
     font-family: def;
@@ -98,6 +99,7 @@ header {
     float: left;
     -webkit-perspective: 1500px;
     perspective: 1500px;
+    overflow: visible;
 }
 .word,.role {
     box-shadow: 0px 3px 5px #AAA;
@@ -174,4 +176,27 @@ header {
 }
 .bystander {
     background: #ffe9c0;
+}
+.role:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0,0,0,0.3);
+    height: 40px;
+    line-height: 40px;
+    color: #FFF;
+    font-size: 20px;
+}
+.assassin:after {
+    content: "Assassin";
+}
+.red:after {
+    content: "Red";
+}
+.blue:after {
+    content: "Blue";
+}
+.bystander:after {
+    content: "Bystander";
 }

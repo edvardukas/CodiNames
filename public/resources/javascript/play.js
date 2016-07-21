@@ -45,14 +45,14 @@ define(['jquery', 'firebase'], function($, firebase) {
                 firebase.database().ref("games/" + game + "/board").once("value", function(board) {
                     for (square in board.val()) {
                         if (board.val()[square].covered) {
-                            $("#" + square + " > .role").html(board.val()[square].role).css("transform", "rotateY(360deg)");
+                            $("#" + square + " > .role").addClass(board.val()[square].role).css("transform", "rotateY(360deg)");
                             $("#" + square + " > .word").css("transform", "rotateY(180deg)");
                         }
                     }
                 });
                 firebase.database().ref("games/" + game + "/board").on("child_changed", function(square) {
                     if (square.val().covered) {
-                        $("#" + square.key + " > .role").html(square.val().role).css("transform", "rotateY(360deg)");
+                        $("#" + square.key + " > .role").addClass(square.val().role).css("transform", "rotateY(360deg)");
                         $("#" + square.key + " > .word").css("transform", "rotateY(180deg)");
                     }
                 });
