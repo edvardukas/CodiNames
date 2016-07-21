@@ -10,23 +10,42 @@ define(['jquery', 'firebase'], function($, firebase) {
         })
         // Loops through every square and fills word;
     }
-
+    firebase.database().ref("games/" + game + "/board").once("value", function (board) {
+        for (square in board.val()) {
+            if (board.val()[square].covered) {
+                $("#" + square + " > .role").addClass(board.val()[square].role).css("transform", "rotateY(360deg)");
+                $("#" + square + " > .word").css("transform", "rotateY(180deg)");
+            }
+        }
+    });
+    firebase.database().ref("games/" + game + "/board").on("child_changed", function (square) {
+        if (square.val().covered) {
+            $("#" + square.key + " > .role").addClass(square.val().role).css("transform", "rotateY(360deg)");
+            $("#" + square.key + " > .word").css("transform", "rotateY(180deg)");
+        }
+    });
     firebase.database().ref('games/' + game).on("value", function(gameD) {
+            console.log(gameD.val())
         if (!$("#redTeam").html().replace(/\s/g, "") && !$("#blueTeam").html().replace(/\s/g, "")) { // checks if filled
             for (player in gameD.val().players) { // Loops through the database to find members of the red team
                 if (gameD.val().players[player].team == "red") {
-                    $("#redTeam").append("<span>" + player + "</span><br/>")
+                    firebase.database().ref("users/"+player).once("value",function(UID){
+                        $("#redTeam").append("<span>" + UID.val().name + "</span><br/>")
+                    })
                 } else if (gameD.val().players[player].team == "blue") {
-                    $("#blueTeam").append("<span>" + player + "</span><br/>")
+                    firebase.database().ref("users/"+player).once("value",function(UID){
+                        $("#redTeam").append("<span>" + UID.val().name + "</span><br/>")
+                    })
                 }
             }
             // fills teams;
         }
         fill(gameD.val().board);
 
-        // TODO: RECKTIFY THIS NESTING; ecksDee
+        // TODO: RECKTIFY THIS NESTING; ex DEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
-        if (player = gameD.val().players[op.name]) {
+        firebase.auth().onAuthStateChanged(function(User) {
+        if (player = gameD.val().players[User.uid]) {
             if (player.perm == "master") {
                 var view = document.createElement("div"),
                     squares = [];
@@ -42,39 +61,22 @@ define(['jquery', 'firebase'], function($, firebase) {
                 $("body").append(view);
                 $("#board").css("bottom", "300px");
             } else {
-                firebase.database().ref("games/" + game + "/board").once("value", function(board) {
-                    for (square in board.val()) {
-                        if (board.val()[square].covered) {
-                            $("#" + square + " > .role").addClass(board.val()[square].role).css("transform", "rotateY(360deg)");
-                            $("#" + square + " > .word").css("transform", "rotateY(180deg)");
-                        }
-                    }
-                });
-                firebase.database().ref("games/" + game + "/board").on("child_changed", function(square) {
-                    if (square.val().covered) {
-                        $("#" + square.key + " > .role").addClass(square.val().role).css("transform", "rotateY(360deg)");
-                        $("#" + square.key + " > .word").css("transform", "rotateY(180deg)");
-                    }
-                });
-                $(".word").click(function() {
-                    var word = this;
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost:3000/turn",
-                        data: {
-                            game: game,
-                            square: word.parentElement.id,
-                            name: op.name
-                        }
-                    });
-                })
-                // Fills Role, and then flips, when corresponding word card is clicked;
+                    $(".word").click(function () {
+                        var word = this;
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:3000/turn",
+                            data: {
+                                game: game,
+                                square: word.parentElement.id,
+                                name: User.uid
+                            }
+                        });
+                    })
+                    // Fills Role, and then flips, when corresponding word card is clicked;
+
             }
-        } else {
-            var spec = document.createElement("div");
-            spec.id = "spectating";
-            $(spec).html("SPECTATING")
-            $("body").append(spec);
-        }
+            }
+        })
     })
 })

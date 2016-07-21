@@ -3,17 +3,9 @@ define(['jquery', 'firebase'], function($, firebase){
     header = document.createElement("header");
     $(header).prepend('<button id="rulesButton">?</button> CODINAMES <div id="usr"> </div>');
     $("body").prepend(header);
-
-   /* var Email = firebase.auth().currentUser.email;
-                                               firebase.database().ref("users").once("value",function(names){
-                                                   for(username in names.val()){
-                                                       if (names[username].Email = Email){
-                                                           op.name = username;
-                                                           break;
-                                                       }
-
-                                                   }
-                                               })*/
-
-    $("#usr").html(op ? op.name : "guest");
+    firebase.auth().onAuthStateChanged(function(user) {
+        firebase.database().ref("users/"+user.uid).once('value', function(data){
+            $("#usr").html(data.val().name || "guest");
+        })
+    })
 })

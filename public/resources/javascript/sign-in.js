@@ -37,27 +37,3 @@ $("#signup").submit(function(e) {
     e.preventDefault();
     return false;
 })
-
-$(".fields").focus(function() {
-    $(this).css({
-        "outline": "1px solid black"
-    });
-    $(this).css({
-        "outline-offset": "-1px"
-    });
-    $(this).css({
-        "transition": "0s"
-    });
-})
-
-$(".fields").focusout(function() {
-    $(this).css({
-        "outline": "0px solid black"
-    });
-    $(this).css({
-        "outline-offset": "-0px"
-    });
-    $(this).css({
-        "transition": "all 0.3s ease"
-    });
-})

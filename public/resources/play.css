@@ -188,15 +188,15 @@ header {
     color: #FFF;
     font-size: 20px;
 }
-.assassin:after {
+.role > .assassin:after {
     content: "Assassin";
 }
-.red:after {
+.role > .red:after {
     content: "Red";
 }
-.blue:after {
+.role > .blue:after {
     content: "Blue";
 }
-.bystander:after {
+.role > .bystander:after {
     content: "Bystander";
 }

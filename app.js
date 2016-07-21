@@ -22,6 +22,7 @@ app.post("/turn",function(req,res){
     var nextTurn,
         player;
     firebase.database().ref("games/"+req.body.game).once("value",function(game){
+        console.log(game.val().players[req.body.name]);
         player = game.val().players[req.body.name];
         nextTurn = (game.val().turn == "red")? "blue":"red";
         console.log(nextTurn);
