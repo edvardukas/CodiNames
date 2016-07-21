@@ -5,6 +5,7 @@ requirejs.config({
 		home: 'home',
 		header: "header",
 		play: "play",
+		sign-in: "sign-in",
 
 		firebase_app  : 'https://www.gstatic.com/firebasejs/3.1.0/firebase-app',
 		firebase_auth : 'https://www.gstatic.com/firebasejs/3.1.0/firebase-auth',

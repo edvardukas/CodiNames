@@ -1,7 +1,4 @@
-
 $("#login").submit(function (e){
-    console.log($("#loginName").val())
-    console.log($("#password").val())
     firebase.auth().signInWithEmailAndPassword($("#loginName").val(),$("#password").val()).then(function(){
         location.href = ("http://localhost:3000");
     }).catch(function(error){
