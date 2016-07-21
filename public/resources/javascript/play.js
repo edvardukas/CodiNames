@@ -24,7 +24,7 @@ define(['jquery', 'firebase'], function($, firebase) {
         }
         fill(game.val().board);
 
-        // TODO: RECKTIFY THIS NESTING;
+        // TODO: RECKTIFY THIS NESTING; ecksDee
 
         if (player = game.val().players[op.name]) {
             if (player.perm == "master") {
