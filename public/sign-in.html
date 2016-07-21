@@ -5,57 +5,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script data-main="resources/javascript/require-config" src="resources/javascript/jslibs/require-2.2.0.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css">
-
-
 </head>
 <body>
+<div id="forms">
+    <form>
 
+    </form>
+    <form>
 
-
-<div id="outer">
-    <div id="middle">
-        <div id="registration">
-            <div id="wrapper">
-                    <form id ="login">
-                        <h1>Log in</h1>
-                        <p>
-                            <label for="loginName" class="uname"> Email </label>
-                            <input name="name" class="fields" required="required" type="text" id="loginName"/>
-                        </p>
-                        <p>
-                            <label for="password" class="pswd"> Password </label>
-                            <input id="password" name="password" required="required" class="fields" type="password"/>
-                        </p>
-                        <p class="keeplogin">
-                            <input type="checkbox" name="loginkeeping" class="fields" id="loginkeeping" value="loginkeeping" />
-                            <label for="loginkeeping">Keep me logged in</label>
-                        </p>
-                            <input type="submit" id="loginContainer" value="Login"/>
-                    </form>
-                    <form id="signup">
-                        <h1> Sign up </h1>
-                        <p>
-                            <label for="usernamesignup" class="uname">Your username</label>
-                            <input id="usernamesignup" name="usernamesignup" class="fields" required="required" type="text" placeholder="mysuperusername690" />
-                        </p>
-                        <p>
-                            <label for="emailsignup" class="youmail"> Your email</label>
-                            <input id="emailsignup" name="emailsignup" class="fields" required="required" type="email" placeholder="mysupermail@mail.com"/>
-                        </p>
-                        <p>
-                            <label for="passwordsignup" class="youpasswd">Your password </label>
-                            <input id="passwordsignup" name="passwordsignup" class="fields" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                        </p>
-                        <p>
-                            <label for="passwordsignup_confirm" class="youpasswd">Confirm Password </label>
-                            <input id="passwordsignup_confirm" name="passwordsignup_confirm" class="fields" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                        </p>
-                        <input type="submit" id="signupContainer" value="Sign Up"/>
-                    </form>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 <script>
          require(['require-config'], function(){
