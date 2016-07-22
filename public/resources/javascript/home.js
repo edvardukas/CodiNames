@@ -3,8 +3,8 @@ define(['jquery', 'firebase'], function($, firebase) {
         User;
 
     firebase.auth().onAuthStateChanged(function(user) {
-        if (User) $("#gamecontainer").html('<div id="new">New Game</div><br/>');
-        else $("#gamecontainer").html("");
+        if (User) $("#gamecontainer").html("");
+        else $("#gamecontainer").html('<div id="new">New Game</div><br/>');
         User = firebase.auth().currentUser;
         firebase.database().ref("users/" + User.uid).once('value', function(data) {
             User.name = data.val().name || "guest";
@@ -29,7 +29,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                     var gdata = Gdata.val(),
                         button = "JOIN",
                         gteam;
-                    if (gdata.players[User.name]) gteam = gdata.players[User.name].team || function() {
+                    if (gdata.players[User.uid]) gteam = gdata.players[User.uid].team || function() {
                             button = "SPECTATE";
                             return "red"
                         }();

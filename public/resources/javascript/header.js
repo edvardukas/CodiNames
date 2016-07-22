@@ -12,6 +12,7 @@ define(['jquery', 'firebase'], function($, firebase){
     })
     $(header).append(ls);
     firebase.auth().onAuthStateChanged(function(User) {
+        if (User) {
         firebase.database().ref("users/"+User.uid).once('value', function(data){
             $("#usr").html(data.val().name || "guest");
             $(ls).html("Sign out");
