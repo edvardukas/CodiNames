@@ -1,14 +1,23 @@
 define(['jquery', 'firebase'], function($, firebase) {
     var finished = [],
         User;
-    function populate(player,gameData,team,opponents){
-        console.log("populating: "+ player,team );
+    function populate(player,gameData,team,Team,Opponents){
+        // console.log("populating: "+ player,team );
         firebase.database().ref("users/" + player).once("value", function(UID) {
-            console.log(player,UID.val());
+            console.log(player,UID.val(),gameData.players[player].team,team);
             if (gameData.players[player].team == team) { // team check: IF SAME TEAM
-                $(team).append((($(team).html()) ? " • " : "") + UID.val().name);
+                $(Team).append((($(Team).html()) ? " • " : "") + UID.val().name);
             } else if (gameData.players[player].team == (team == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
-                $(opponents).append((($(opponents).html()) ? " • " : "") + UID.val().name);
+                $(Opponents).append((($(Opponents).html()) ? " • " : "") + UID.val().name);
+            }
+        })
+    }
+    function repopulate(player,gameData){
+        firebase.database().ref("users/" + player).once("value", function(UID) {
+            if (gameData.players[player].team == gteam) { // team check: IF SAME TEAM
+                $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + UID.val().name);
+            } else if (gameData.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
+                $("#" + game + " > .opp ").append((($("#" + game + " > .opp ").html()) ? " • " : "") + UID.val().name);
             }
         })
     }
@@ -31,6 +40,7 @@ define(['jquery', 'firebase'], function($, firebase) {
         firebase.database().ref("users/" + User.uid).on('value', function(data) {
             create(data.val());
         });
+
 
         function create(data) {
             data.games.forEach(function(game, i) {
@@ -86,13 +96,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                             $("#" + game + "> .join").html(button);
                         }
                         for (player in gdata.players) {
-                            firebase.database().ref("users/" + player).once("value", function(UID) {
-                                if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
-                                    $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + UID.val().name);
-                                } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
-                                    $("#" + game + " > .opp ").append((($("#" + game + " > .opp ").html()) ? " • " : "") + UID.val().name);
-                                }
-                            })
+                            repopulate(player,gdata)
                         }
                     }
                 }).then(function() {
