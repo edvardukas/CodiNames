@@ -12,7 +12,7 @@ define(['jquery', 'firebase'], function($, firebase) {
             }
         })
     }
-    function repopulate(player,gameData){
+    function repopulate(player,gameData,gteam){
         firebase.database().ref("users/" + player).once("value", function(UID) {
             if (gameData.players[player].team == gteam) { // team check: IF SAME TEAM
                 $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + UID.val().name);
@@ -79,6 +79,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                             $(container).addClass("spectate");
                             join.href += "&spectate=true";
                         }
+                        console.log(gdata.isFinished);
                         if (gdata.isFinished) {
                             $(container).addClass("finished");
                             finished.push(container);
@@ -96,7 +97,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                             $("#" + game + "> .join").html(button);
                         }
                         for (player in gdata.players) {
-                            repopulate(player,gdata)
+                            repopulate(player,gdata,gteam)
                         }
                     }
                 }).then(function() {
