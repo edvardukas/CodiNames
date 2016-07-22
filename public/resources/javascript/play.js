@@ -10,6 +10,18 @@ define(['jquery', 'firebase'], function($, firebase) {
         })
         // Loops through every square and fills word;
     }
+    function fillTeams(player,gameData) {
+        console.log(player,gameData.val())
+        if (gameData.val().players[player].team == "red") {
+            firebase.database().ref("users/"+player).once("value",function(UID){
+                $("#redTeam").append("<span>" + UID.val().name + "</span><br/>")
+            })
+        } else if (gameData.val().players[player].team == "blue") {
+            firebase.database().ref("users/"+player).once("value",function(UID){
+                $("#blueTeam").append("<span>" + UID.val().name + "</span><br/>")
+            })
+        }
+    }
     firebase.database().ref("games/" + game + "/board").once("value", function (board) {
         for (square in board.val()) {
             if (board.val()[square].covered) {
@@ -27,18 +39,9 @@ define(['jquery', 'firebase'], function($, firebase) {
     firebase.database().ref('games/' + game).on("value", function(gameD) {
             console.log(gameD.val())
         if (!$("#redTeam").html().replace(/\s/g, "") && !$("#blueTeam").html().replace(/\s/g, "")) { // checks if filled
-            for (player in gameD.val().players) { // Loops through the database to find members of the red team
-                if (gameD.val().players[player].team == "red") {
-                    firebase.database().ref("users/"+player).once("value",function(UID){
-                        $("#redTeam").append("<span>" + UID.val().name + "</span><br/>")
-                    })
-                } else if (gameD.val().players[player].team == "blue") {
-                    firebase.database().ref("users/"+player).once("value",function(UID){
-                        $("#redTeam").append("<span>" + UID.val().name + "</span><br/>")
-                    })
-                }
+            for (player in gameD.val().players) {
+                fillTeams(player,gameD)
             }
-            // fills teams;
         }
         fill(gameD.val().board);
 
