@@ -31,7 +31,7 @@ app.post("/turn", function (req, res) {
             if (game.val().board[req.body.square].role == "assassin") {
                 for (square in game.val().board) {
                     firebase.database().ref("games/" + req.body.game + "/board/"+square+"/covered").set(true);
-                    firebase.database().ref("games/" + req.body.game + "ifFinished").set(true);
+                    firebase.database().ref("games/" + req.body.game + "/ifFinished").set(true);
                 }
             }
             if (game.val().board[req.body.square].role == nextTurn || game.val().board[req.body.square].role == "bystander") {
