@@ -30,17 +30,27 @@
 <div id="rules" class="pop">
     <div class="close"></div>
     <h2>How to play CodiNames</h2>
-    <ol>
-        <li>Players are </li>
-        <li>Hi</li>
-        <li>Hi</li>
-        <li>Hi</li>
-    </ol>
+    <ul>
+        <li>The aim of the game is to determine, with help of your spymaster, which cards belong to your team</li>
+        <li>Players are divided into 2 teams of equal size and roles are randomly placed throughout the board</li>
+        <li>The roles are red team, blue team, bystander, and assassin</li>
+        <li>The spymaster will take turns giving a clue which consists of a word and a number, where the number refers the number of cards that the clue refers to</li>
+        <li>You may not give a clue that is a word that is on, or consists of a word on the table</li>
+        <li>Upon hearing a clue from their spymaster, the team will guess choose one of the cards on the table</li>
+        <li>Once a card is picked, it flips over and one of four things can happen:
+            <ol>
+                <li>If it is a card of your own colour, you may take another turn</li>
+                <li>If it is a card of the other teams colour, it becomes their turn</li>
+                <li>If it is an innocent bystander, it also becomes the other teams turn</li>
+                <li>If it is the assassin, your team loses the game</li>
+            </ol>
+        </li>
+        <li>Repeat this until either one team loses, or until all the cards of one teams colour have been turned over</li>
+        <li>If your team has turned over all of its cards, your team wins</li>
+    </ul>
 </div>
 <script>
-    var op = {
-        name: ""
-    }
+
         // options variable;
     require(['require-config'], function(){
         require(['home']);

@@ -61,6 +61,9 @@ form > input {
     color: #FFF;
     text-indent: 0px;
 }
+[name="go"]:hover{
+    animation: pulse 1.5s infinite;
+}
 label {
     height: 20px;
 }
@@ -69,6 +72,17 @@ label {
     display: inline-block;
     color: #000;
     font-size: 18px;
+}
+@keyframes pulse {
+    0%{
+        background-color: #48947f;
+    }
+    50%{
+        background-color: #48a78d;
+    }
+    100%{
+        background-color: #48947f;
+    }
 }
 label[for="passcom"],label[for="user"],input[name="passcom"],input[name="user"] {
     display: inline-block;

@@ -11,7 +11,11 @@
     font-family: thick;
 }
 html {
-    background: #F7F8FA
+    background: #F7F8FA;
+
+}
+body {
+    background-image: url("HomeBG.png");
 }
 * {
     overflow: hidden;
@@ -196,7 +200,7 @@ section > div:hover {
 #new:hover {
     background: #3d7e6c;
 }
-ol {
+ul {
     text-align: left;
 }
 h2 {
@@ -227,4 +231,15 @@ h2 {
     font-size: 3em;
     text-align: center;
     background: blue;
+}
+li {
+    display: inline-block;
+    margin: 4px 0px;
+}
+li:before{
+    content: "- ";
+    display: inline-block;
+}
+ol > li:before{
+    content:"• ";
 }
