@@ -12,7 +12,7 @@ define(['jquery', 'firebase'], function($, firebase) {
             }
         })
     }
-    function repopulate(player,gameData,gteam){
+    function repopulate(player,gameData,gteam,game){
         firebase.database().ref("users/" + player).once("value", function(UID) {
             if (gameData.players[player].team == gteam) { // team check: IF SAME TEAM
                 $("#" + game + " > .team ").append((($("#" + game + " > .team ").html()) ? " • " : "") + UID.val().name);
@@ -97,7 +97,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                             $("#" + game + "> .join").html(button);
                         }
                         for (player in gdata.players) {
-                            repopulate(player,gdata,gteam)
+                            repopulate(player,gdata,gteam,game)
                         }
                     }
                 }).then(function() {
