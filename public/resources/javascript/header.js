@@ -13,7 +13,6 @@ define(['jquery', 'firebase'], function($, firebase){
     $(header).append(ls);
     firebase.auth().onAuthStateChanged(function(User) {
         if (User) {
-            $("#gamecontainer").html('<div id="new">New Game</div>');
         firebase.database().ref("users/"+User.uid).once('value', function(data){
             $("#usr").html(data.val().name || "guest");
             $(ls).html("Sign out");
@@ -22,7 +21,6 @@ define(['jquery', 'firebase'], function($, firebase){
                 firebase.auth().signOut();
             })
         })} else {
-            $("#gamecontainer").html("");
             $("#usr").html("Guest");
             $(ls).html("Sign up | Log in");
             $(ls).off("click")
