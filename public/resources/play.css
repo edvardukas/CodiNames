@@ -163,15 +163,15 @@
     color: #FFF;
     font-size: 20px;
 }
-.role > .assassin:after {
+.role.assassin:after {
     content: "Assassin";
 }
-.role > .red:after {
+.role.red:after {
     content: "Red";
 }
-.role > .blue:after {
+.role.blue:after {
     content: "Blue";
 }
-.role > .bystander:after {
+.role.bystander:after {
     content: "Bystander";
 }

@@ -1,7 +1,17 @@
 define(['jquery', 'firebase'], function($, firebase) {
     var finished = [],
         User;
-
+    function populate(player,gameData,team,opponents){
+        console.log("populating: "+ player,team );
+        firebase.database().ref("users/" + player).once("value", function(UID) {
+            console.log(player,UID.val());
+            if (gameData.players[player].team == team) { // team check: IF SAME TEAM
+                $(team).append((($(team).html()) ? " • " : "") + UID.val().name);
+            } else if (gameData.players[player].team == (team == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
+                $(opponents).append((($(opponents).html()) ? " • " : "") + UID.val().name);
+            }
+        })
+    }
     firebase.auth().onAuthStateChanged(function(user) {
         if (User) $("#gamecontainer").html("");
         else $("#gamecontainer").html('<div id="new">New Game</div><br/>');
@@ -23,7 +33,7 @@ define(['jquery', 'firebase'], function($, firebase) {
         });
 
         function create(data) {
-            data.games.filter(function(game, i) {
+            data.games.forEach(function(game, i) {
                 firebase.database().ref("games/" + game).once('value', function(Gdata) {
 
                     var gdata = Gdata.val(),
@@ -48,14 +58,11 @@ define(['jquery', 'firebase'], function($, firebase) {
                         container.id = game;
                         join.href = "play.html?g=" + game;
                         $(join).html(button);
-                        for (player in gdata.players) {
-                            firebase.database().ref("users/" + player).once("value", function(UID) {
-                                if (gdata.players[player].team == gteam) { // team check: IF SAME TEAM
-                                    $(team).append((($(team).html()) ? " • " : "") + UID.val().name);
-                                } else if (gdata.players[player].team == (gteam == "red" ? "blue" : "red")) { // team check: IF OPPOSING TEAM ( NO ELSE )
-                                    $(opponents).append((($(opponents).html()) ? " • " : "") + UID.val().name);
-                                }
-                            })
+                        // gdata.players.forEach(function (player) {
+                        //     populate(player, gdata, gteam, team, opponents);
+                        // });
+                        for (Player in gdata.players) {
+                            populate(Player,gdata,gteam,team,opponents);
                         }
                         $(container).append(team, opponents, join);
                         if (button === "SPECTATE") {
@@ -89,7 +96,7 @@ define(['jquery', 'firebase'], function($, firebase) {
                         }
                     }
                 }).then(function() {
-                    finished.filter(function(fgame) {
+                    finished.forEach(function(fgame) {
                         $("#gamecontainer").append(fgame);
                     })
                 })
@@ -139,13 +146,13 @@ define(['jquery', 'firebase'], function($, firebase) {
             var players = {},
                 games,
                 key;
-            $("[name=blue]").val().split(",").filter(function(each) {
+            $("[name=blue]").val().split(",").forEach(function(each) {
                 players[each] = {
                     "team": "blue",
                     "perm": "play"
                 }
             });
-            $("[name=red]").val().split(",").filter(function(each) {
+            $("[name=red]").val().split(",").forEach(function(each) {
                 players[each] = {
                     "team": "red",
                     "perm": "play"
