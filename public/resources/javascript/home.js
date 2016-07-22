@@ -3,6 +3,8 @@ define(['jquery', 'firebase'], function($, firebase) {
         User;
 
     firebase.auth().onAuthStateChanged(function(user) {
+        if (User) $("#gamecontainer").html('<div id="new">New Game</div><br/>');
+        else $("#gamecontainer").html("");
         User = firebase.auth().currentUser;
         firebase.database().ref("users/" + User.uid).once('value', function(data) {
             User.name = data.val().name || "guest";
