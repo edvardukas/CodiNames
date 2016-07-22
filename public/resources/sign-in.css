@@ -23,75 +23,56 @@ html {
     outline: 0px;
     color: #FFF
 }
-#gcc {
-    top: 70px;
+#cont {
     text-align: center;
     width: 100%;
+    max-width: 500px;
+    height: 430px;
     max-height: calc(100% - 70px);
-    position: fixed;
+    position: absolute;
+    top: 70px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
 }
-#usr:before{
-    content:"Welcome:";
-    position:relative;
-    left:-3px;
-    width:300px;
-    text-align:right;
-    font-family:light
+form {
+    text-align: left;
+    padding: 13px 20px;
+    width: 100%;
+    background: #FFF;
 }
-#firebaseui-auth-container{
-    width: 300px;
-    margin: 0 auto;
-    top: 40%;
-    background: red;
-    align: center;
+form, form * {
+    color: #333;
 }
-
-#outer{
-    width:100%;
-    height:100%;
-    position:absolute;
-    display:table;
+form > input {
+    margin: 7px 0px;
+    background: #F7F8FA;
+    border-radius: 3px;
+    width: 100%;
+    height: 40px;
+    text-indent: 15px;
+    font-size: 17px;
 }
-#middle{
-    display:table-cell;
-    vertical-align: middle;
+[name="go"] {
+    background: #48947f;
+    height: 60px;
+    font-size: 19px;
+    color: #FFF;
+    text-indent: 0px;
 }
-#registration{
-    width: 20%;
-    margin: 0 auto;
-    top: 40%;
-    background: #AFAFAF;
-    align: center;
-    border-radius: 5px;
-    border: black 2px solid;
+label {
+    height: 20px;
 }
-#register:hover,#login:hover{
-    background: #9E9E9E;
+#sw {
+    margin-top: 10px;
+    display: inline-block;
+    color: #000;
+    font-size: 18px;
 }
-#register, #login{
-    border: 1px solid black;
-}
-.fields{
-    color: black;
-}
-#loginContainer{
-position:relative;
-    width:100%;
-    background: #8C001A;
-    text-align: center;
-    transition: 0s;
-}
-#loginContainer:hover{
-    background: #bf0023;
-}
-
-#signupContainer{
-position:relative;
-    width:100%;
-    background: #7fcaff;
-    text-align: center;
-
-}
-#signupContainer:hover{
-    background: #4ce2ff;
+label[for="passcom"],label[for="user"],input[name="passcom"],input[name="user"] {
+    display: inline-block;
+    height: 0px;
+    margin: 0px;
+    opacity: 0;
 }
