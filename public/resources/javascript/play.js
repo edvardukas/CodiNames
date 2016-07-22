@@ -45,7 +45,7 @@ define(['jquery', 'firebase'], function($, firebase) {
         }
         fill(gameD.val().board);
 
-        // TODO: RECKTIFY THIS NESTING; ex DEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        // TODO: RECKTIFY THIS NESTING;
 
         firebase.auth().onAuthStateChanged(function(User) {
         if (player = gameD.val().players[User.uid]) {

@@ -28,6 +28,11 @@ app.post("/turn", function (req, res) {
         console.log(req.body.square,nextTurn);
         if (player.team === game.val().turn) {
             firebase.database().ref("games/" + req.body.game + "/board/" + req.body.square + "/covered").set(true);
+            if (game.val().board[req.body.square].role == "assassin") {
+                for (square in game.val().board) {
+                    firebase.database().ref("games/" + req.body.game + "/board/"+square+"/covered").set(true);
+                }
+            }
             if (game.val().board[req.body.square].role == nextTurn || game.val().board[req.body.square].role == "bystander") {
                 firebase.database().ref("games/" + req.body.game + "/turn").set(nextTurn)
             }
