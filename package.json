@@ -4,9 +4,7 @@
   "description": "<i>CodiNames</i> - it's like CodeNames but with an i.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "deploy": "eb deploy --profile softwire workexp-codinames-prod"
+    "start": "npm install && node app.js"
   },
   "repository": {
     "type": "git",
