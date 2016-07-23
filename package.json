@@ -2,17 +2,17 @@
   "name": "codinames",
   "version": "1.0.0",
   "description": "<i>CodiNames</i> - it's like CodeNames but with an i.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app",
+    "start": "node app.js",
     "deploy": "eb deploy --profile softwire workexp-codinames-prod"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/edvardukas/CodiNames.git"
   },
-  "author": "",
+  "author": "Tobi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/edvardukas/CodiNames/issues"
@@ -20,7 +20,6 @@
   "homepage": "https://github.com/edvardukas/CodiNames#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "cors": "^2.7.1",
     "express": "^4.14.0",
     "firebase": "^3.2.0"
   }
